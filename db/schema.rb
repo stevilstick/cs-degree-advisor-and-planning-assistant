@@ -11,6 +11,123 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150306025544) do
+
+  create_table "advisor_students", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "advisor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "advisor_students", ["advisor_id"], name: "index_advisor_students_on_advisor_id"
+  add_index "advisor_students", ["student_id"], name: "index_advisor_students_on_student_id"
+
+  create_table "advisors", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "advisors", ["user_id"], name: "index_advisors_on_user_id"
+
+  create_table "course_instances", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "semester_id"
+    t.integer  "student_id"
+    t.integer  "rotation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_instances", ["course_id"], name: "index_course_instances_on_course_id"
+  add_index "course_instances", ["rotation_id"], name: "index_course_instances_on_rotation_id"
+  add_index "course_instances", ["semester_id"], name: "index_course_instances_on_semester_id"
+  add_index "course_instances", ["student_id"], name: "index_course_instances_on_student_id"
+
+  create_table "course_plans", force: :cascade do |t|
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_plans", ["student_id"], name: "index_course_plans_on_student_id"
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "subject"
+    t.integer  "call_number"
+    t.integer  "credit_hours"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "degree_requirements", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "degree_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "degree_requirements", ["course_id"], name: "index_degree_requirements_on_course_id"
+  add_index "degree_requirements", ["degree_id"], name: "index_degree_requirements_on_degree_id"
+
+  create_table "degrees", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "total_credits"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "prerequisites", force: :cascade do |t|
+    t.integer  "this_course_id"
+    t.integer  "target_course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prerequisites", ["target_course_id"], name: "index_prerequisites_on_target_course_id"
+  add_index "prerequisites", ["this_course_id"], name: "index_prerequisites_on_this_course_id"
+
+  create_table "rotations", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "semesters", force: :cascade do |t|
+    t.integer  "year_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "semesters", ["year_id"], name: "index_semesters_on_year_id"
+
+  create_table "students", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "students", ["user_id"], name: "index_students_on_user_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "hashed_password"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "years", force: :cascade do |t|
+    t.integer  "course_plan_id"
+    t.integer  "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "years", ["course_plan_id"], name: "index_years_on_course_plan_id"
 
 end
