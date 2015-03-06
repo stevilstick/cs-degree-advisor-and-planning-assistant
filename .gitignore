@@ -50,6 +50,3 @@ config/secrets.yml
 
 # Ignore the default database
 /db/*.sqlite3
-
-Gemfile.lock
-
