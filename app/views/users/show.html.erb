@@ -1,13 +1,12 @@
-<%= @user.name %>, <%= @user.email %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-4 col-md-offset-3">
     <section class="user_info">
       <h1>
-        <%= @user.name %>
+        <%= @user.first_name %> <%= @user.last_name %>
       </h1>
-      <h2>
+      <h3>
         <%= @user.email %>
-      </h2>
+      </h3>
     </section>
   </aside>
 </div>
