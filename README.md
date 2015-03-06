@@ -13,7 +13,7 @@ This Project uses Ruby version 2.1.1, and Rails version 4.2.0.
 7.  SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed
 8.  If this happens download this file [AddTrustExternalCARoot-2048.pem](https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/AddTrustExternalCARoot-2048.pem)
 9.  and pasted into yourrubypath\lib\ruby\2..\rubygems\ssl_certs
-10.  the re-run 'bundle install'
-11.  once that is done executing run 'bundle update'
-12.  After that Run bin/rails server
+10. Then re-run 'bundle install'
+11. once that is done executing run 'bundle update'
+12. After that Run bin/rails server
 13. Finally, open up a web browser and navigate to localhost:3000 to see the application.
