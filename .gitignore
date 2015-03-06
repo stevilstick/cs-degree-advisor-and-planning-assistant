@@ -49,8 +49,5 @@ Thumbs.db
 # Ignore the default database 
 /db/*.sqlite3 
 
-Gemfile.lock
-
-/bin
 
 
