@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :students
+  has_many :advisors
   before_save { self.email = email.downcase }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :first_name, presence: true, length: { maximum: 50 }

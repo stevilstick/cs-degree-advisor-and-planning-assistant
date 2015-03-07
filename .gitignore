@@ -48,5 +48,8 @@ Thumbs.db
 # Ignore secret keys file
 config/secrets.yml
 
-# Ignore the default database
-/db/*.sqlite3
+# Ignore the default database 
+/db/*.sqlite3*
+
+
+
