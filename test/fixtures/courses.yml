@@ -1,13 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  subject: MyString
-  call_number: 1
-  credit_hours: 
+  name: Computer Science 1
+  subject: CS
+  call_number: 1050
+  credit_hours: 4
 
 two:
-  name: MyString
-  subject: MyString
-  call_number: 1
-  credit_hours: 
+  name: Computer Science 2
+  subject: CS
+  call_number: 2050
+  credit_hours: 4
+
+three:
+  name: Principles of Programming Languages
+  subject: CS
+  call_number: 3210
+  credit_hours: 4

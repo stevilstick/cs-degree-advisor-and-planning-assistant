@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  year_id: 
-  name: MyString
+  year_id: 1
+  name: Spring
 
 two:
-  year_id: 
-  name: MyString
+  year_id: 1
+  name: Fall

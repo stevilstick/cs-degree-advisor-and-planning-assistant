@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  total_credits: 1
-
-two:
-  name: MyString
-  total_credits: 1
+  name: Computer Science
+  total_credits: 120
