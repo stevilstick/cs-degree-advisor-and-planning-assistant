@@ -10,27 +10,21 @@ Please Note the following:
 ## How To Run Locally
 ### Install Ruby and Rails
 #### Ruby
-##### on Windows
+###### on Windows
 See [RubyOnRails.org's download page](http://rubyonrails.org/download/) for details on installing Ruby on Windows.
 They navigate you to [rubyinstaller.org](http://rubyinstaller.org/) but the followup details at RubyOnRails.org are important, too.
 
-###### Caveat for Windows users
-If you happen to be working on windows, you might run into into this error:
-`SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed`
-If this happens download this file [AddTrustExternalCARoot-2048.pem](https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/AddTrustExternalCARoot-2048.pem)
-and pasted into yourrubypath\lib\ruby\2..\rubygems\ssl_certs
-Then re-run `bundle install`
-Once that is done executing run `bundle update`
 
-##### on Mac and Ubuntu
+###### on Mac and Ubuntu
 See [GoRails.com's walkthrough](https://gorails.com/setup/osx/10.10-yosemite) for how to install on Mac OS X 10.10 & 10.9, or Ubuntu.
 The Mac instructions use [Homebrew](http://brew.sh/) paired with [rbenv](https://github.com/sstephenson/rbenv).
 The Ubuntu instructions use apt-get and your choice of [rbenv](https://github.com/sstephenson/rbenv) or [rvm](https://rvm.io/)
 
-##### Other OSs
+
+###### Other OSs
 For operating systems not listed, we haven't researched nor do we know the capabilities for getting Ruby on Rails installed.
 
-##### rbenv
+###### rbenv
 It's highly recommended that you set up [rbenv](https://github.com/sstephenson/rbenv) to manage Ruby installs.
 
 #### Rails
@@ -44,7 +38,13 @@ Before you run any bundle commands you need to install [Bundler](http://bundler.
 Install dependencies specified in the Gemfile by running 
 `bundle install`
 
-
+#### Caveat for Windows users
+If you happen to be working on windows, you might run into into this error:
+`SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed`
+If this happens download this file [AddTrustExternalCARoot-2048.pem](https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/AddTrustExternalCARoot-2048.pem)
+and pasted into yourrubypath\lib\ruby\2..\rubygems\ssl_certs
+Then re-run `bundle install`
+Once that is done executing run `bundle update`
 
 ### Configure rails secret keys
 **The secrets.yml file is currently included in the project, setting it up can be skipped until further notice.**
