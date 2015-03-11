@@ -31,6 +31,22 @@ It's highly recommended that you set up [rbenv](https://github.com/sstephenson/r
 Once you have Ruby installed, you need to install Rails using the following command:
 `gem install rails`
 
+### Clone the repository
+Note that Gouda doesn't allow SSH connection and the SSL cert doesn't work well with Gitlab so set the following in your config file
+`git config http.sslVerify false`
+And add `--global` if you're accessing numerous repositories on Gouda.
+
+#### If you just want to run the project
+From the desired directory on your computer, run this command to clone the project:
+`git clone https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
+
+You can also just download the source code from this page.
+
+#### If you want to contribute to this project
+You should fork the Falcon repo and clone your fork instead. You can find a "Fork" button near the top right of this page.
+Clone using the same command as above, replacing 'falcon' with your username.
+To commit changes, make a merge request to Falcon/master from your fork and branch with the desired changes.
+
 ### Bundle
 Before you run any bundle commands you need to install [Bundler](http://bundler.io/) by running
 `gem install bundle`
