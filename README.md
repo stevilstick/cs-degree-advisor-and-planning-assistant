@@ -39,6 +39,7 @@ And add `--global` if you're accessing numerous repositories on Gouda.
 #### If you just want to run the project
 From the desired directory on your computer, run this command to clone the project:
 `git -c http.sslVerify=false clone https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
+
 Note that Gouda doesn't allow SSH connection and the SSL cert doesn't work well with Gitlab so the `-c http.sslVerify=false` is important.
 
 You can also just download the source code from this page.
