@@ -9,7 +9,7 @@ Please note the following:
 * Bundler 1.8.3 is the only version tested with this product and known to be compatible.
 
 ## How To Run Locally
-### Install Ruby and Rails
+### Install Ruby, Rails & Bundler
 #### Ruby
 ###### on Windows
 See [RubyOnRails.org's download page](http://rubyonrails.org/download/) for details on installing Ruby on Windows.
