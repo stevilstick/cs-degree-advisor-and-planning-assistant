@@ -1,0 +1,14 @@
+<h1>Add a Course Plan</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@course_plan) do |f| %>
+      <%= render 'shared/error_messages', object: @course_plan %>
+
+      <%= f.label :student_id %>
+      <%= f.text_field :student_id, class: 'form-control' %>
+
+      <%= f.submit "Create Plan", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
