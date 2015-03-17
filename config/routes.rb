@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'course_plans#show', :defaults => { :id => 1 } # id: 1 is seeded by `rake db:seed`
 
   get 'course_plans/new'
+  get 'courses/cs1'
   get 'signup' => 'users#new'
   resources :users, :course_plans
 
