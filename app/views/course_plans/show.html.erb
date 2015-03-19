@@ -3,14 +3,17 @@
     <h1>
         Course Plan <%= @course_plan.id %>    
     </h1>
-  </div
+
+  </div>
 </div>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <hr>
+    <div id="year">
     <h2>
       2014/2015
     </h2>
+    </div>
     <h3>
       Fall 
     </h3>
@@ -110,5 +113,13 @@
           </tr>
         </tbody>
       </table>
-  </div
+  </div>
+  <div class="row">
+    <div id="year" class="col-md-6 col-md-offset-3">
+        <%= render @years %>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <%= render 'years/new_year', locals: {object: @course_plan} %>
+    </div>
+  </div>
 </div>

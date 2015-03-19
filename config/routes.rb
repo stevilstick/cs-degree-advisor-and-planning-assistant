@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'course_plans/new'
   get 'courses/cs1'
   get 'signup' => 'users#new'
-  resources :users, :course_plans
+  resources :users, :course_plans, :years
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
