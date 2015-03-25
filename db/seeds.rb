@@ -6,3 +6,5 @@ User.create(first_name: "Player", last_name: "One", email: "chris.moquin@msudenv
 User.create(first_name: "Player", last_name: "Two", email: "trevor.smith@msudenver.edu",
             password: "foobar", password_confirmation: "foobar")
 CoursePlan.create(id: 1, student_id: 1)
+
+CourseInstance.create(course_id: 1, semester_id: 1, student_id: 1, rotation_id: 1)
