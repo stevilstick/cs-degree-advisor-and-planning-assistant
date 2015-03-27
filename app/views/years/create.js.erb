@@ -1,0 +1,4 @@
+<% if @year.valid? %>
+  $('div#years').append("<%= escape_javascript(render @year) %>");
+  $('div#<%= dom_id(@year) %>');
+<% end %>

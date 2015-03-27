@@ -115,11 +115,18 @@
       </table>
   </div>
   <div class="row">
-    <div id="year" class="col-md-6 col-md-offset-3">
-        <%= render @years %>
+
+    <div id="years" class="col-md-6 col-md-offset-3">
+      <%= render @course_plan.year %>
     </div>
-    <div class="col-md-6 col-md-offset-3">
-        <%= render 'years/new_year', locals: {object: @course_plan} %>
-    </div>
-  </div>
+
+      <%= form_for([@course_plan, @year = @course_plan.year.new], locals: {object: @course_plan}, remote: true) do |f| %>
+        <div class="col-md-6 col-md-offset-3">
+
+          <%= f.hidden_field :course_plan_id %>
+          <%= f.select :year, (1965)..(Time.zone.now.year + 50), :selected => Time.zone.now.year, class: 'form-control' %>
+
+          <%= f.submit "Add Year", class: "btn btn-primary" %>
+        </div>
+      <% end %>
 </div>

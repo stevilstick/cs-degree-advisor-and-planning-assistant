@@ -15,7 +15,7 @@ class YearsControllerTest < ActionController::TestCase
 
   test "should create year" do
     assert_difference('CoursePlan.count') do
-      post :create, course_plan: { student_id: 2 }
+      post :create, year: { course_plan_id: 2 }
     end
     assert_redirected_to course_plan_path(assigns(:course_plan))
   end
