@@ -1,26 +1,18 @@
 class YearsController < ApplicationController
   before_filter :get_course_plan
 
-  def new
-    @year = @course_plan.year.new
-  end
-
   def create
     @year = @course_plan.year.new(year_params)
     @year.save
 
     respond_to do |format|
-      format.html { redirect_to 'course_plans#show' }
+      format.html { redirect_to @course_plan }
       format.js
     end
   end
 
   def get_course_plan
     @course_plan = CoursePlan.find(params[:course_plan_id])
-  end
-
-  def show
-    @year = @course_plan.years.find(params[:id])
   end
 
   private
