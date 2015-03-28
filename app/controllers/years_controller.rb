@@ -1,10 +1,6 @@
 class YearsController < ApplicationController
   before_filter :get_course_plan
 
-  def index
-    @years = @course_plan.years
-  end
-
   def new
     @year = @course_plan.year.new
   end
