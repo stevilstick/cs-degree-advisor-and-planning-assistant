@@ -2,7 +2,7 @@ module Api
   class V1::UsersController < Api::V1::BaseController
 
     private
-      def users_params
+      def user_params
         params.permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end
 

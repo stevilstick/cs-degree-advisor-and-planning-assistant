@@ -11,8 +11,8 @@ class ApiV1UsersTest < ActionDispatch::IntegrationTest
     assert_equal(201, response.status)
 
     body = JSON.parse(response.body)
-    assert_nil(body['user']['id'])
-    assert_nil(body['user']['created_at'])
+    assert_not_nil(body['user']['id'])
+    assert_not_nil(body['user']['created_at'])
     assert_nil(body['user']['password'])
     assert_nil(body['user']['password_confirmation'])
     assert_equal("Mr.", body['user']['first_name'])
@@ -44,8 +44,8 @@ class ApiV1UsersTest < ActionDispatch::IntegrationTest
     assert_equal("Michelle", body['user']['first_name'])
     assert_equal("Tanner", body['user']['last_name'])
     assert_equal("yougotitdude@msudenver.edu", body['user']['email'])
-    assert_nil(body['user']['id'])
-    assert_nil(body['user']['created_at'])
+    assert_not_nil(body['user']['id'])
+    assert_not_nil(body['user']['created_at'])
     assert_nil(body['users'])
   end
 
@@ -66,8 +66,8 @@ class ApiV1UsersTest < ActionDispatch::IntegrationTest
     users = body['users'].map { |m| m["first_name"] }
     assert_equal(["Chuckles", "Dr.", "Leroy", "Michelle"], users.sort)
     assert_equal(4, body['users'].length)
-    assert_nil(body['users'].first['id'])
-    assert_nil(body['users'].first['created_at'])
+    assert_not_nil(body['users'].first['id'])
+    assert_not_nil(body['users'].first['created_at'])
     assert_nil(body['users'].first['password'])
     assert_nil(body['users'].first['password_confirmation'])
   end

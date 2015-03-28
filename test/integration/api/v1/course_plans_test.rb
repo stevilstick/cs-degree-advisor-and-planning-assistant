@@ -32,9 +32,8 @@ class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
 
     assert_equal(200, response.status, "has successful response code")
     assert_equal(3, body['course_plan']['student_id'], "has the right student_id")
-    assert_nil(body['course_plan']['id'])
-    assert_nil(body['course_plan']['id'])
-    assert_nil(body['course_plan']['created_at'])
+    assert_not_nil(body['course_plan']['id'])
+    assert_not_nil(body['course_plan']['created_at'])
     assert_nil(body['course_plans'])
   end
 
@@ -50,8 +49,8 @@ class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
     course_plans = body['course_plans'].map { |m| m["student_id"] }
     assert_equal([3, 7, 9], course_plans.sort)
     assert_equal(3, body['course_plans'].length)
-    assert_nil(body['course_plans'].first['id'])
-    assert_nil(body['course_plans'].first['created_at'])
+    assert_not_nil(body['course_plans'].first['id'])
+    assert_not_nil(body['course_plans'].first['created_at'])
   end
 
   test "should return 404 when retrieving a missing course plan" do
