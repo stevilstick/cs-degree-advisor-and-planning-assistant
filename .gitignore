@@ -1,6 +1,7 @@
 # IDE generated files #
 #######################
 **/*.idea/*
+**/*.iml
 
 # Compiled source #
 ###################
