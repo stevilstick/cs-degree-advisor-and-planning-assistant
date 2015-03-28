@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ApiV1CoursePlanTest < ActionDispatch::IntegrationTest
+class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
 
   test "creates a course plan" do
     post "/api/v1/course_plans/", { student_id: 33 }, { "Accept" => "application/json" }

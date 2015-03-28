@@ -1,4 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# Switching to using factories to make test data more predicatble
+
 #plan1:
 #  id: 1
 #  student_id: 1

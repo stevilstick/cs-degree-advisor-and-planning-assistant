@@ -17,11 +17,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @course_plan = CoursePlan.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def destroy
-    @course_plan.destroy
+    @user.destroy
   end
 
   private
