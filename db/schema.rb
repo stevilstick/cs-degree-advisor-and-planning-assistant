@@ -58,7 +58,10 @@ ActiveRecord::Schema.define(version: 20150306071850) do
     t.string   "subject"
     t.integer  "call_number"
     t.integer  "credit_hours"
+<<<<<<< HEAD
     t.string   "description"
+=======
+>>>>>>> upstream/master
     t.datetime "created_at"
     t.datetime "updated_at"
   end

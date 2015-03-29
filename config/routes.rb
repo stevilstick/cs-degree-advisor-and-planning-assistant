@@ -7,10 +7,15 @@ Rails.application.routes.draw do
 
   get 'course_plans/new'
   get 'courses/cs1'
+<<<<<<< HEAD
   get 'courses/new'
   get 'courses/show'
   get 'signup' => 'users#new'
   resources :users, :course_plans, :courses
+=======
+  get 'signup' => 'users#new'
+  resources :users, :course_plans
+>>>>>>> upstream/master
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
