@@ -66,13 +66,5 @@ test "call number should be integer only" do
     assert_not @course.valid?
   end
 
-test "credit hours should be integer only" do
-    @course.credit_hours = 2
-    assert @course.valid?
-
-    @course.credit_hours = "a"
-    assert_not @course.valid?
-  end
-
 
 end

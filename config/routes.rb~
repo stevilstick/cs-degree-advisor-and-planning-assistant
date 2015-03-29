@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   root 'course_plans#show', :defaults => { :id => 1 } # id: 1 is seeded by `rake db:seed`
 
   get 'course_plans/new'
-  get 'course/cs1'
+  get 'courses/cs1'
+  get 'courses/new'
+  get 'courses#show'
   get 'signup' => 'users#new'
-  resources :users, :course_plans
+  resources :users, :course_plans, :courses
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
