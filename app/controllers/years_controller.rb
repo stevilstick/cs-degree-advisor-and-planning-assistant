@@ -2,7 +2,7 @@ class YearsController < ApplicationController
   before_filter :get_course_plan
 
   def create
-    @year = @course_plan.year.new(year_params)
+    @year = @course_plan.years.new(year_params)
     @year.save
 
     respond_to do |format|
