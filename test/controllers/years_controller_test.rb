@@ -6,7 +6,7 @@ class YearsControllerTest < ActionController::TestCase
   end
 
   test "should create year" do
-    assert_difference('@course_plan.year.count') do
+    assert_difference('@course_plan.years.count') do
       post :create, year: {course_plan_id: @course_plan.id, year: 2017}, course_plan_id: @course_plan.id
     end
     assert_response :redirect
