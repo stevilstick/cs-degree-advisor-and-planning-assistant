@@ -3,14 +3,16 @@
     <h1>
         Course Plan <%= @course_plan.id %>    
     </h1>
-  </div
+  </div>
 </div>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <hr>
+    <div id="year">
     <h2>
-      2014/2015
+      2014
     </h2>
+    </div>
     <h3>
       Fall 
     </h3>
@@ -46,6 +48,11 @@
           </tr>
         </tbody>
       </table>
+    <div id="year">
+      <h2>
+        2015
+      </h2>
+    </div>
     <h3>
       Spring 
     </h3>
@@ -110,5 +117,12 @@
           </tr>
         </tbody>
       </table>
-  </div
+  </div>
+  <div class="row">
+
+    <div id="years" class="col-md-6 col-md-offset-3">
+      <%= render @course_plan.years %>
+    </div>
+
+      <%= render 'years/form' %>
 </div>
