@@ -11,4 +11,11 @@ class YearsControllerTest < ActionController::TestCase
     end
     assert_response :redirect
   end
+
+  test "should destroy year" do
+    assert_difference('Year.count', -1) do
+      delete :destroy, id: 1
+    end
+    #assert_response :redirect
+  end
 end
