@@ -8,3 +8,5 @@ User.create(first_name: "Player", last_name: "Two", email: "trevor.smith@msudenv
 CoursePlan.create(id: 1, student_id: 1)
 
 CourseInstance.create(course_id: 1, semester_id: 1, student_id: 1, rotation_id: 1)
+
+Course.create(id: 1, name: "test", subject: "TS", call_number: 1, credit_hours: 4, description: "this is a test description" )

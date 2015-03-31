@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class CourseTest < ActiveSupport::TestCase
-<<<<<<< HEAD
 
   def setup
     @course = Course.new(name: "computer science 1", subject: "CS", call_number: 1050, credit_hours: 4, description: "this is a description")
@@ -75,10 +74,4 @@ test "credit hours should be integer only" do
     assert_not @course.valid?
   end
 
-
-=======
-  # test "the truth" do
-  #   assert true
-  # end
->>>>>>> upstream/master
 end

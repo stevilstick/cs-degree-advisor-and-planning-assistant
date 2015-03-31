@@ -15,7 +15,7 @@ class CoursesControllerTest < ActionController::TestCase
 
   test "should create course" do
     assert_difference('Course.count') do
-      post :create, course: { student_id: 2 }
+      post :create, course: { name: "computer science 1", subject: "CS", call_number: 1050, credit_hours: 4, description: "this is a description" }
     end
     assert_redirected_to course_path(assigns(:course))
   end
