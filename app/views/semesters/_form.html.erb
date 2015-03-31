@@ -1,0 +1,7 @@
+<%= form_for Semester.new do |f| %>
+<!--TODO: Add in error message display when semester can't be created-->
+    Add New Semester:
+    <%= f.select :name, options_for_select(['Spring', 'Summer', 'Fall']), {}, {class:'form-control'} %>
+    <%= f.hidden_field :year_id, value: year_id %>
+    <%= f.submit 'Add Semester to Plan', class: 'btn btn-primary' %>
+<% end %>
