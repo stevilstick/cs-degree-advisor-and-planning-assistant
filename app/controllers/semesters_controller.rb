@@ -31,7 +31,7 @@ class SemestersController < ApplicationController
         format.html { redirect_to course_plan_path(@semester.year.course_plan), notice: 'Semester was successfully created.' }
         format.json { render :show, status: :created, location: @semester }
       else
-        format.html { redirect_to course_plan_path(@semester.year.course_plan) }
+        format.html { redirect_to course_plan_path(@semester.year.course_plan), status: :unprocessable_entity }
         format.json { render json: @semester.errors, status: :unprocessable_entity }
       end
     end

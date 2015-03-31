@@ -5,45 +5,23 @@ class SemestersControllerTest < ActionController::TestCase
     @semester = semesters(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:semesters)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   test "should create semester" do
+
+
     assert_difference('Semester.count') do
-      post :create, semester: {  }
+      post :create, semester: {name: 'Fall', year_id: 1}
     end
 
-    assert_redirected_to semester_path(assigns(:semester))
+    assert_redirected_to course_plan_path(1)
   end
 
-  test "should show semester" do
-    get :show, id: @semester
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @semester
-    assert_response :success
-  end
-
-  test "should update semester" do
-    patch :update, id: @semester, semester: {  }
-    assert_redirected_to semester_path(assigns(:semester))
-  end
-
-  test "should destroy semester" do
-    assert_difference('Semester.count', -1) do
-      delete :destroy, id: @semester
+  test "should not create a semester" do
+    3.times do
+      post :create, semester: {name: 'Test', year_id: 1}
     end
 
-    assert_redirected_to semesters_path
+    post :create, semester: {name:'Fall', year_id: 1}
+    assert_response :unprocessable_entity
   end
+
 end

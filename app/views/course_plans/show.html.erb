@@ -1,124 +1,45 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1>
-        Course Plan <%= @course_plan.id %>    
-    </h1>
-  </div>
+
+
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+  <h1>Course Plan</h1>
+  <hr>
 </div>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <hr>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2>
-          2014
-        </h2>
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+
+  <% @course_plan.years.each do |year| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2><%= year.year %></h2>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <% year.semesters.each do |semester| %>
+                <div class="col-xs-12 col-md-4">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4><%= semester.name %></h4>
+                    </div>
+                    <div class="panel-body">
+                      <% (semester.course_instances || []).each do |instance| %>
+                          <div class="panel panel-info">
+                            <div class="panel-heading">
+                              <% if instance.course %>
+                                <%= instance.course.name %>
+                              <% end%>
+                            </div>
+                          </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+
+          <%= render 'semesters/form', year: year %>
+        </div>
       </div>
-    <h3>
-      Spring
-    </h3>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Course Name</th>
-            <th>Subject</th>
-            <th>Call Number</th>
-            <th>Credit Hours</th>
-            <th>Total Credit Hours</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><strong>8</strong></td>
-          </tr>
-          <tr>
-            <td>Computer Science 1</td>
-            <td>Computer Science</td>
-            <td>CS 1050</td>
-            <td>4</td>
-          </tr>
-          <tr>
-            <td>Computer Organization 1</td>
-            <td>Computer Science</td>
-            <td>CS 1400</td>
-            <td>4</td>
-          </tr>
-        </tbody>
-      </table>
-    <h3>
-      Summer
-    </h3>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Course Name</th>
-            <th>Subject</th>
-            <th>Call Number</th>
-            <th>Credit Hours</th>
-            <th>Total Credit Hours</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><strong>8</strong></td>
-          </tr>
-          <tr>
-            <td>Computer Science 2</td>
-            <td>Computer Science</td>
-            <td>CS 2050</td>
-            <td>4</td>
-          </tr>
-          <tr>
-            <td>Computer Organization 2</td>
-            <td>Computer Science</td>
-            <td>CS 2400</td>
-            <td>4</td>
-          </tr>
-        </tbody>
-      </table>
-    <h3>
-      Fall
-    </h3>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Course Name</th>
-            <th>Subject</th>
-            <th>Call Number</th>
-            <th>Credit Hours</th>
-            <th>Total Credit Hours</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><strong>4</strong></td>
-          </tr>
-          <tr>
-            <td>Principles of Database Systems</td>
-            <td>Computer Science</td>
-            <td>CS 3810</td>
-            <td>4</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <% Year.find_by(1).semesters.each do |semester| %>
-          <h3><%= semester.name %></h3>
-      <% end %>
-      <%= render 'semesters/form', year_id: 1 %>
-    </div>
-
-  </div>
+  <% end %>
+</div>
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+  <%= render 'years/form' %>
 </div>
