@@ -15,6 +15,11 @@ Rails.application.routes.draw do
     get :years, on: :collection
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :users, :course_plans
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
