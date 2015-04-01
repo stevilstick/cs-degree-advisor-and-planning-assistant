@@ -1,0 +1,6 @@
+<%= form_for Semester.new do |f| %>
+    <p>Add New Semester:</p>
+    <%= f.select :name, options_for_select(['Spring', 'Summer', 'Fall']), {}, {class:'form-control'} %>
+    <%= f.hidden_field :year_id, value: year.id %>
+    <%= f.submit 'Add Semester', class: 'btn btn-primary', disabled: (year.semesters.length >= 3) %>
+<% end %>

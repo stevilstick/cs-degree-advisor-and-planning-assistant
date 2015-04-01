@@ -43,15 +43,20 @@ And add `--global` if you're accessing numerous repositories on Gouda.
 From the desired directory on your computer, run this command to clone the project:
 `git -c http.sslVerify=false clone https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
 `cd cs-degree-advisor-and-planning-assistant`
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a3b864663ca2ae0e35eae37e862fbbc733cc59c
 
 Note that Gouda doesn't allow SSH connection and the SSL cert doesn't work well with Gitlab so the `-c http.sslVerify=false` is important.
 
 You can also just download the source code from this page.
 
 ### Install Dependancies
-Make sure you are in the correct directory where the project lives.  You now need to install all the gem dependancies.  This is all handled
-by bundle. 
+Make sure you are in the correct directory where the project lives.  Now install all the gem dependancies using bundle.
+
 `bundle install`
+
 It may take a couple of minutes if this is your first time installing the dependancies.
 
 ### Run a db migration
@@ -102,4 +107,4 @@ the output of the previous command output for SECRET_KEY
 ```
 test:
     secret_key_base: SECRET_KEY
-```
+

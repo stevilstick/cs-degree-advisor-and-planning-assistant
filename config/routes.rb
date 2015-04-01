@@ -8,8 +8,17 @@ Rails.application.routes.draw do
   get 'course_plans/new'
   get 'courses/cs1'
   get 'signup' => 'users#new'
-  resources :users, :course_plans
+  resources :users, :semesters, :years
+  resources :course_plans do
+    resources :years, :only => [:create, :index, :new]
+    get :years, on: :collection
+  end
 
+  namespace :api do
+    namespace :v1 do
+      resources :users, :course_plans
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class CoursePlansControllerTest < ActionController::TestCase
+  def setup
+    @controller = CoursePlansController.new
+    FactoryGirl.create :course_plan, student_id: 1
+  end
+
   test "should get new" do
     get :new
     assert_response :success
