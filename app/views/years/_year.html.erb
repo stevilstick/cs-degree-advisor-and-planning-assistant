@@ -1,8 +1,6 @@
 <%= div_for year do %>
-    <div class="page-header">
-        <h2><%= year.year %></h2>
-        <button type="button" class="btn btn-default btn-sm pull-right">
-          <%= link_to 'delete year', year, method: :delete, remote: true %>
-        </button>
-    </div>
+    <h2><%= year.year %></h2>
+    <button type="button" class="btn btn-default btn-sm pull-right">
+      <%= link_to 'delete year', year, method: :delete, remote: true %>
+    </button>
 <% end %>

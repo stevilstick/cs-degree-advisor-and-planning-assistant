@@ -7,21 +7,17 @@ class YearsController < ApplicationController
     @year.save
 
     respond_to do |format|
-      format.html { redirect_to @course_plan }
+      format.html { render :nothing => :true }
       format.js
     end
   end
 
   def destroy
     @year = Year.find(params[:id])
-    #course_plan_id = @year.course_plan_id
-    #print course_plan_id
-    #@course_plan = CoursePlan.find(params[course_plan_id])
-    #print @course_plan.id
     @year.destroy
 
     respond_to do |format|
-      format.html #{ redirect_to @course_plan }
+      format.html { render :nothing => :true }
       format.js
     end
   end
