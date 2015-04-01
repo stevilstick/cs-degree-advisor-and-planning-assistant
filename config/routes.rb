@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   get 'course_plans/new'
   get 'courses/cs1'
   get 'signup' => 'users#new'
-  resources :users
-  resources :years
+  resources :users, :semesters, :years
   resources :course_plans do
     resources :years, :only => [:create, :index, :new]
     get :years, on: :collection
