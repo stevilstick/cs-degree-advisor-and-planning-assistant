@@ -1,5 +1,4 @@
 class YearsController < ApplicationController
-  #before_filter :get_course_plan
 
   def create
     @course_plan = CoursePlan.find(params[:course_plan_id])
