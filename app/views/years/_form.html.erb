@@ -1,8 +1,8 @@
-<%= form_for([@course_plan, @year = @course_plan.years.new], locals: {object: @course_plan}, remote: true) do |f| %>
-    <div class="col-md-6 col-md-offset-3">
+<%= form_for([@course_plan, @year = @course_plan.years.new], locals: {object: @course_plan}) do |f| %>
+
       <%= f.hidden_field :course_plan_id %>
-      <%= f.select :year, (1965)..(Time.zone.now.year + 50), :selected => Time.zone.now.year, class: 'form-control' %>
+      <%= f.select :year, (1965)..(Time.zone.now.year + 50), {}, {:selected => Time.zone.now.year, class: 'form-control'} %>
 
       <%= f.submit "Add Year", class: "btn btn-primary" %>
-    </div>
+
 <% end %>
