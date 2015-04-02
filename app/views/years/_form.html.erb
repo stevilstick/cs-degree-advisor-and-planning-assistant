@@ -1,8 +1,6 @@
-<%= form_for([@course_plan, @year = @course_plan.years.new], locals: {object: @course_plan}) do |f| %>
-
-      <%= f.hidden_field :course_plan_id %>
-      <%= f.select :year, (1965)..(Time.zone.now.year + 50), {}, {:selected => Time.zone.now.year, class: 'form-control'} %>
-
-      <%= f.submit "Add Year", class: "btn btn-primary" %>
-
+<%= form_for Year.new do |f| %>
+    <p>Add New Year:</p>
+    <%= f.select :year, (1965)..(Time.zone.now.year + 50), :selected => Time.zone.now.year, class: 'form-control' %>
+    <%= f.hidden_field :course_plan_id, value: course_plan.id %>
+    <%= f.submit "Add Year", class: "btn btn-primary" %>
 <% end %>
