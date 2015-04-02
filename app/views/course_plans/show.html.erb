@@ -10,7 +10,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h2><%= year.year %></h2>
-          <button class="btn btn-default"><%= link_to 'delete', year, method: :delete %></button>
+          <%= link_to 'delete', year, method: :delete, class: 'btn btn-default' %>
         </div>
         <div class="panel-body">
           <div class="row">
