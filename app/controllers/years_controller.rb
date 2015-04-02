@@ -8,9 +8,7 @@ class YearsController < ApplicationController
   end
 
   def create
-    #@course_plan = CoursePlan.find(params[:course_plan_id])
     @year = Year.new(year_params)
-    #@year.save
 
     respond_to do |format|
       if @year.save
