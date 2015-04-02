@@ -32,4 +32,12 @@ class YearTest < ActiveSupport::TestCase
     assert_equal year_plan2.year, 2016, "Year created with incorrect value"
     assert_equal year_plan1.year, 2016, "Year value was changed erroneously"
   end
+
+  test "should autogenerate spring, summer, and fall semester relations" do
+    assert @year.semesters.length === 3
+    semesters = ['Spring','Summer','Fall']
+    @year.semesters.each_with_index do |semester, i|
+      assert semester.name === semesters[i]
+    end
+  end
 end
