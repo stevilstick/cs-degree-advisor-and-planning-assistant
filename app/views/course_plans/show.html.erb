@@ -10,6 +10,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h2><%= year.year %></h2>
+          <button class="btn btn-default"><%= link_to 'delete', year, method: :delete %></button>
         </div>
         <div class="panel-body">
           <div class="row">
@@ -40,5 +41,5 @@
   <% end %>
 </div>
 <div class="col-xs-12 col-md-10 col-md-offset-1">
-  <%= render 'years/form' %>
+  <%= render 'years/form', course_plan: @course_plan %>
 </div>
