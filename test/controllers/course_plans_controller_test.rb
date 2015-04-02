@@ -3,7 +3,7 @@ require 'test_helper'
 class CoursePlansControllerTest < ActionController::TestCase
   def setup
     @controller = CoursePlansController.new
-    FactoryGirl.create :course_plan, student_id: 1
+    @plan = FactoryGirl.create :course_plan, student_id: 1
   end
 
   test "should get new" do
@@ -13,7 +13,7 @@ class CoursePlansControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
-    get(:show, { id: 1 }) 
+    get(:show, { id: @plan.id })
     assert_response :success
     assert_template :show
   end
