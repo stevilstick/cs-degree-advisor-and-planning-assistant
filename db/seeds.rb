@@ -9,4 +9,11 @@ CoursePlan.create(id: 1, student_id: 1)
 
 CourseInstance.create(course_id: 1, semester_id: 1, student_id: 1, rotation_id: 1)
 
-Course.create(id: 1, name: "test", subject: "TS", call_number: 1, credit_hours: 4, description: "this is a test description" )
+CoursePlan.create!(student_id: 1)
+Course.create!(name: 'Computer Science 1', subject: 'CS', call_number: 1050, credit_hours:4, description: "This is the first course in the computer 
+science core sequence. Students will learn a modern programming language and the basic skills needed to analyze problems and construct programs for 
+their solutions. The emphasis of the course is on the techniques of algorithm development, correctness, and programming style. Students are also 
+introduced to the fundamentals of software engineering and the software-development life cycle.")
+CourseInstance.create!(course_id: 1, semester_id: 1, student_id: 1, rotation_id: 1)
+Year.create!(year: 2015, course_plan_id: 1)
+Semester.create!(name: 'Fall', year_id: 1)

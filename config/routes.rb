@@ -15,8 +15,13 @@ Rails.application.routes.draw do
     resources :years, :only => [:create, :index, :new]
     get :years, on: :collection
   end
+  resources :users, :course_plans, :semesters, :years
 
-
+  namespace :api do
+    namespace :v1 do
+      resources :users, :course_plans
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

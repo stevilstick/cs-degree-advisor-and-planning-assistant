@@ -1,18 +1,33 @@
 class YearsController < ApplicationController
-  before_filter :get_course_plan
+
+  def new
+    @year = Year.new
+  end
+
+  def show
+  end
 
   def create
-    @year = @course_plan.years.new(year_params)
-    @year.save
+    @year = Year.new(year_params)
 
     respond_to do |format|
-      format.html { redirect_to @course_plan }
-      format.js
+      if @year.save
+        format.html { redirect_to course_plan_path(@year.course_plan), notice: 'Semester was successfully created.' }
+        format.json { render :show, status: :created, location: @year }
+      else
+        format.html { redirect_to course_plan_path(@year.course_plan), status: :unprocessable_entity }
+        format.json { render json: @year.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def get_course_plan
-    @course_plan = CoursePlan.find(params[:course_plan_id])
+  def destroy
+    @year = Year.find(params[:id])
+    @year.destroy
+    respond_to do |format|
+      format.html { redirect_to course_plan_path(@year.course_plan), notice: 'Year was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private

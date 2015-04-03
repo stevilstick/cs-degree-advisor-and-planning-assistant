@@ -25,9 +25,6 @@ The Ubuntu instructions use apt-get and your choice of [rbenv](https://github.co
 ###### Other OSs
 For operating systems not listed, we haven't researched nor do we know the capabilities for getting Ruby on Rails installed.
 
-###### rbenv
-It's highly recommended that you set up [rbenv](https://github.com/sstephenson/rbenv) to manage Ruby installs.
-
 #### Rails
 Once you have Ruby installed, you need to install Rails using the following command:
 `gem install rails`
@@ -36,8 +33,6 @@ Once you have Ruby installed, you need to install Rails using the following comm
 Before you run any bundle commands you need to install [Bundler](http://bundler.io/) by running
 `gem install bundle`
 
-Install dependencies specified in the Gemfile by running
-`bundle install`
 
 ### Clone the repository
 
@@ -47,11 +42,40 @@ And add `--global` if you're accessing numerous repositories on Gouda.
 #### If you just want to run the project
 From the desired directory on your computer, run this command to clone the project:
 `git -c http.sslVerify=false clone https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
-`cd cs-degree-advisor-and-planning-assistant.git`
+`cd cs-degree-advisor-and-planning-assistant`
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a3b864663ca2ae0e35eae37e862fbbc733cc59c
 
 Note that Gouda doesn't allow SSH connection and the SSL cert doesn't work well with Gitlab so the `-c http.sslVerify=false` is important.
 
 You can also just download the source code from this page.
+
+### Install Dependancies
+Make sure you are in the correct directory where the project lives.  Now install all the gem dependancies using bundle.
+
+`bundle install`
+
+It may take a couple of minutes if this is your first time installing the dependancies.
+
+### Run a db migration
+`bundle exec rake db:migrate`
+
+### Seed the database
+`bundle exec rake db:seed`
+
+### Start the rails server
+`bundle exec rails s`
+
+### Navigate to the web application
+Open up a web browser and navigate to localhost:3000 to see the application.
+You should see an example course plan if you have seeded the database with the
+command above.
+
+## Running the tests
+You can run all the tests for the rails application locally by executing the following command.
+`bundle exec rake test`
 
 #### If you want to contribute to this project
 You should fork the Falcon repo and clone your fork instead. You can find a "Fork" button near the top right of this page.
@@ -83,21 +107,4 @@ the output of the previous command output for SECRET_KEY
 ```
 test:
     secret_key_base: SECRET_KEY
-```
 
-### Run a db migration
-`bundle exec rake db:migrate`
-
-### Seed the database
-`bundle exec rake db:seed`
-
-### Start the rails server
-`bundle exec rails s`
-
-### Navigate to the web application
-Open up a web browser and navigate to localhost:3000 to see the application.
-You should see an example course plan if you have seeded the database with the
-command above.
-
-## Running the tests
-`bundle exec rake test`
