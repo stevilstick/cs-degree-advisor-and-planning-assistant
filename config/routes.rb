@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'course_plans/new'
   get 'courses/cs1'
+  get 'courses' => 'courses#index'
   get 'signup' => 'users#new'
   resources :users, :course_plans, :semesters, :years
 
