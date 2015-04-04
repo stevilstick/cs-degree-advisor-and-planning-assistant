@@ -5,6 +5,10 @@ class CoursePlansController < ApplicationController
     @course_plan = CoursePlan.new
   end
   
+  def index
+    @course_plans = CoursePlan.all
+  end
+  
   def create
     @course_plan = CoursePlan.new(plan_params)
     if @course_plan.save

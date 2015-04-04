@@ -11,6 +11,12 @@ class CoursePlansControllerTest < ActionController::TestCase
     assert_response :success
     assert_template :new
   end
+  
+  test "should get index" do
+    get :index
+    assert_response :success
+    assert_template :index
+  end
 
   test "should get show" do
     get(:show, { id: @plan.id }) 
