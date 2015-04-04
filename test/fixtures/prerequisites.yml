@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# target course is the course that is required
 one:
-  this_course_id: 1
-  target_course_id: 2
+  this_course_id: 2
+  target_course_id: 1
 
 two:
-  this_course_id: 2
-  target_course_id: 3
+  this_course_id: 3
+  target_course_id: 2
