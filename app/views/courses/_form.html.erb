@@ -1,4 +1,13 @@
 <%= form_tag(courses_path, :method => "get", id: "search-form") do %>
+  <%= select_tag :query_param, options_for_select(
+    ['Course Name (ex. Computer Science)', 
+        'CRN Number (ex. 867501)', 
+        'Course Listing (ex. CS 1050)', 
+        'Subject (ex. CS, MTH, PHYS)'], :selected => params[:query_param]) 
+  %>
   <%= text_field_tag :search, params[:search], placeholder: "Search Courses" %>
   <%= submit_tag "Search", :name => nil %>
+<% end %>
+<%= form_tag(courses_path, :method => "get", id: "get-all-courses") do %>
+  <%= submit_tag "Show All", :name => :show_all %>
 <% end %>

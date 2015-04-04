@@ -3,7 +3,19 @@ class Course < ActiveRecord::Base
   has_one :degree_requirement
   has_many :prerequisites
 
-  def self.search(query)
-    where("name like ?", "%#{query}")
+  # For fuzzy searching, names do not have to be exact
+
+  fuzzily_searchable :course_listing, :name, :subject 
+  
+  def course_listing
+    "#{subject} #{call_number}" 
+  end
+
+  def course_listing_changed?
+    subject_changed? || call_number_changed?
+  end
+
+  def self.search(field, query)
+    where("#{field} like ?", "%#{query}%") 
   end
 end

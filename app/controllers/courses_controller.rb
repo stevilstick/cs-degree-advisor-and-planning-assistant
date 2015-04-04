@@ -1,58 +1,26 @@
 class CoursesController < ApplicationController
   before_action :set_course_plan, only: [:show, :edit, :update, :destroy]
 
-
-def index
-  if params[:search]
-    @courses = Course.search(params[:search]).order("name ASC")
-  else
-    @courses = Course.all.order('name ASC')
+  def index
+    if params[:search]
+      # Need TODO allow searching by different attributes find_by_fuzzy_attribute
+      if params[:query_param]
+        query_param = params[:query_param]
+        if query_param.start_with? "Course Listing"
+          @courses = Course.find_by_fuzzy_course_listing(params[:search], :limit => 10)
+        elsif query_param.start_with? "Subject"
+          @courses = Course.find_by_fuzzy_subject(params[:search], :limit => 10)
+        elsif query_param.start_with? "CRN"
+          @courses = Course.search("crn", params[:search]).order("name ASC")
+        else
+          @courses = Course.find_by_fuzzy_name(params[:search], :limit => 10)
+        end
+      end
+    elsif params[:show_all]
+      @courses = Course.all.order('name ASC')
+    else
+      # TODO may want to paginate in the future in the default case
+      @courses = Course.all.order('name ASC')
+    end
   end
-end
-
-#  def new
-#    @course_plan = CoursePlan.new
-#  end
-#  
-#  def create
-#    @course_plan = CoursePlan.new(plan_params)
-#    if @course_plan.save
-#      redirect_to @course_plan
-#    else
-#      render 'new'
-#    end
-#  end
-#
-#  def show
-#  end
-#
-#  def edit
-#  end
-#
-#  def update
-#    respond_to do |format|
-#      if @course_plan.update(plan_params)
-#        format.html { redirect_to @course_plan, notice: 'Course Plan was successfully updated.' }
-#      else
-#        format.html { render :edit }
-#      end
-#    end
-#  end
-#
-#  def destroy
-#    @course_plan.destroy
-#    respond_to do |format|
-#      format.html { render nothing: true }
-#    end
-#  end
-
-  private
-
-    def set_course_plan
-      @course_plan = CoursePlan.find(params[:id])
-    end
-    
-    def plan_params
-      params.require(:course_plan).permit(:student_id)
-    end
 end
