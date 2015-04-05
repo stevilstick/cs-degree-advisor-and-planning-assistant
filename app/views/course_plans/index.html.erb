@@ -1,0 +1,33 @@
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+    <h1 class="pull-left">All Course Plans</h1>
+    <div class="pull-right">
+        <%= link_to 'New Course Plan', course_plans_new_path, method: :new, :method => 'get', class: 'btn btn-primary btn-lg btn-new-course-plan' %>
+
+    </div>
+</div>
+            
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Course Plan Id</th>
+                <th>Name</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @course_plans.each do |course_plan| %>
+                <tr>
+                    <th scope="row"><%= course_plan.id %></th>
+                
+                    <td><%= link_to  course_plan, :method => 'get' do %>
+                        Course Plan <%= course_plan.id %>
+                         <% end %>
+                    </td>
+                
+                    <td><%= course_plan.updated_at.in_time_zone("Mountain Time (US & Canada)") %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
