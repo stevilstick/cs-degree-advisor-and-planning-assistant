@@ -2,7 +2,7 @@ require 'test_helper'
 
 class YearsControllerTest < ActionController::TestCase
   def setup
-    @plan1 = FactoryGirl.create :course_plan, student_id: 3
+    @plan1 = FactoryGirl.create :course_plan, student_id: 3, plan_name: "Plan 1"
   end
 
   test "should create year" do
