@@ -17,13 +17,4 @@ class SemestersControllerTest < ActionController::TestCase
     assert_redirected_to course_plan_path(@course_plan.id)
   end
 
-  test "should not create a semester" do
-    3.times do
-      post :create, semester: {name: 'Test', year_id: @year.id}
-    end
-
-    post :create, semester: {name:'Fall', year_id: @year.id}
-    assert_response :unprocessable_entity
-  end
-
 end
