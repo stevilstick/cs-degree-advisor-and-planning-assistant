@@ -26,4 +26,9 @@ class CoursePlanTest < ActiveSupport::TestCase
       end
   end
 
+  test "should destroy dependent years for a destroyed course plan" do
+    assert_difference('Year.count', -3) do
+      CoursePlan.destroy(@plan.id)
+    end
+  end
 end

@@ -40,4 +40,10 @@ class YearTest < ActiveSupport::TestCase
       assert semester.name === semesters[i]
     end
   end
+
+  test "should destroy dependent semesters for a destroyed year" do
+    assert_difference('Semester.count', -3) do
+      Year.destroy(@year.id)
+    end
+  end
 end
