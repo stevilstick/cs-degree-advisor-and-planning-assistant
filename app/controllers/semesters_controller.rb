@@ -54,9 +54,10 @@ class SemestersController < ApplicationController
   # DELETE /semesters/1
   # DELETE /semesters/1.json
   def destroy
+    course_plan = @semester.year.course_plan
     @semester.destroy
     respond_to do |format|
-      format.html { redirect_to semesters_url, notice: 'Semester was successfully destroyed.' }
+      format.html { redirect_to course_plan_path(course_plan), notice: 'Semester was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
