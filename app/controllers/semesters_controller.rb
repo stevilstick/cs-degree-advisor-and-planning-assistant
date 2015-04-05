@@ -28,10 +28,14 @@ class SemestersController < ApplicationController
 
     respond_to do |format|
       if @semester.save
-        format.html { redirect_to course_plan_path(@semester.year.course_plan), notice: 'Semester was successfully created.' }
+        format.html { redirect_to course_plan_path(@semester.year.course_plan) }
         format.json { render :show, status: :created, location: @semester }
       else
-        format.html { redirect_to course_plan_path(@semester.year.course_plan), status: :unprocessable_entity }
+        format.html do
+          redirect_to course_plan_path(@semester.year.course_plan),
+                      semester_notice:
+                          "Semester cannot be created."
+        end
         format.json { render json: @semester.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +61,8 @@ class SemestersController < ApplicationController
     course_plan = @semester.year.course_plan
     @semester.destroy
     respond_to do |format|
-      format.html { redirect_to course_plan_path(course_plan), notice: 'Semester was successfully destroyed.' }
+      format.html { redirect_to course_plan_path(course_plan),
+                                semester_notice: 'Semester was successfully deleted.' }
       format.json { head :no_content }
     end
   end

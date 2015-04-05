@@ -53,19 +53,22 @@
                     </div>
                     <div class="panel-body">
                       <% (semester.course_instances || []).each do |instance| %>
+                          <% if instance.course %>
                           <div class="panel panel-info">
                             <div class="panel-heading">
-                              <% if instance.course %>
-                                  <%= instance.course.name %>
-                              <% end %>
+                              <div class="container-fluid">
+                                <%= instance.course.name %>
+                              </div>
                             </div>
                           </div>
+                          <% end %>
                       <% end %>
                     </div>
                   </div>
                 </div>
             <% end %>
           </div>
+          <p class="text-muted"><%= semester_notice %></p>
           <%= render 'semesters/form', year: year %>
         </div>
       </div>
