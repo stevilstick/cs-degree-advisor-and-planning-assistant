@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   root 'course_plans#show', :defaults => { :id => 1 } # id: 1 is seeded by `rake db:seed`
 
   get 'course_plans/new'
-  get 'courses/cs1'
+  get 'courses/new'
+  get 'courses/show'
   get 'signup' => 'users#new'
-  resources :users, :course_plans, :semesters, :years
+  resources :users, :course_plans, :years, :semesters, :courses
 
   namespace :api do
     namespace :v1 do

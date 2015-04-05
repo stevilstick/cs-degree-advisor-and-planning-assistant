@@ -5,6 +5,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :subject
       t.integer :call_number
       t.integer :credit_hours
+      t.string :description
 
       t.timestamps
     end
