@@ -1,0 +1,6 @@
+<%= form_for (semester.course_instances.new) do |f| %>
+    <p>Add course:</p>
+     <%= f.collection_select( :course_id, Course.all, :id, :name )%>
+    <%= f.hidden_field :semester_id, value: semester.id %>
+    <%= f.submit 'Add Course', class: 'btn btn-primary', disabled: (semester.course_instances.length >= 4) %>
+<% end %>

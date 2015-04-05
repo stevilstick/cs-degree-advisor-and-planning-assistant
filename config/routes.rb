@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'courses/new'
   get 'courses/show'
   get 'signup' => 'users#new'
-  resources :users, :course_plans, :years, :semesters, :courses
+  resources :users, :course_plans, :semesters, :years, :courses, :course_instances
 
   namespace :api do
     namespace :v1 do

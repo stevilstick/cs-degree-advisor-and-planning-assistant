@@ -1,11 +1,8 @@
-
-
 <div class="col-xs-12 col-md-10 col-md-offset-1">
   <h1>Course Plan</h1>
   <hr>
 </div>
 <div class="col-xs-12 col-md-10 col-md-offset-1">
-
   <% @course_plan.years.each do |year| %>
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -30,6 +27,7 @@
                             </div>
                           </div>
                       <% end %>
+                      <%= render 'course_instances/form', semester: semester %>
                     </div>
                   </div>
                 </div>
