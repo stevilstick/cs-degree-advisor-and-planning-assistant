@@ -3,7 +3,7 @@ module Api
 
     private
       def course_plan_params
-        params.permit(:student_id)
+        params.permit(:student_id, :plan_name)
       end
 
       # May want to expose for querying plans by student_id?

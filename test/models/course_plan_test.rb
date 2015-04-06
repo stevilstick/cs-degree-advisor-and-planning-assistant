@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CoursePlanTest < ActiveSupport::TestCase
   def setup
-    @plan = CoursePlan.new(student_id: 12)
+    @plan = CoursePlan.new(student_id: 12, plan_name: "Plan 1")
     @plan.save
     @plan.years << Year.new(year: 2000) << Year.new(year: 1995) << Year.new(year: 2050)
   end
@@ -11,11 +11,8 @@ class CoursePlanTest < ActiveSupport::TestCase
     assert @plan.valid?
   end
 
-  test "student id should be present" do
-    @plan.student_id = "        "
-    assert_not @plan.valid?
-
-    @plan.student_id = ""
+  test "course plan name should be present" do
+    @plan.plan_name = nil
     assert_not @plan.valid?
   end
 

@@ -3,7 +3,7 @@ require 'test_helper'
 class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
 
   test "creates a course plan" do
-    post "/api/v1/course_plans/", { student_id: 33 }, { "Accept" => "application/json" }
+    post "/api/v1/course_plans/", { student_id: 33, plan_name: "First" }, { "Accept" => "application/json" }
     assert_equal(201, response.status)
 
     body = JSON.parse(response.body)
@@ -11,7 +11,7 @@ class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
   end
 
   test "should update a course plan" do
-    plan = FactoryGirl.create :course_plan, student_id: 3
+    plan = FactoryGirl.create :course_plan, student_id: 3, plan_name: "Plan 1"
     put "/api/v1/course_plans/#{plan['id']}", { student_id: 4 }, { "Accept" => "application/json" }
 
     assert_equal(200, response.status)
@@ -26,7 +26,7 @@ class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
   end
 
   test "should return a single course plan" do
-    plan = FactoryGirl.create :course_plan, student_id: 3
+    plan = FactoryGirl.create :course_plan, student_id: 3, plan_name: "Plan 1"
     get "/api/v1/course_plans/#{plan['id']}", {}, { "Accept" => "application/json" }
     body = JSON.parse(response.body)
 
@@ -38,9 +38,9 @@ class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
   end
 
   test "should return all the course plans" do
-    FactoryGirl.create :course_plan, student_id: 3
-    FactoryGirl.create :course_plan, student_id: 7
-    FactoryGirl.create :course_plan, student_id: 9
+    FactoryGirl.create :course_plan, student_id: 3, plan_name: "Plan 1"
+    FactoryGirl.create :course_plan, student_id: 7, plan_name: "Plan 2"
+    FactoryGirl.create :course_plan, student_id: 9, plan_name: "Plan 3"
     get "/api/v1/course_plans", {}, { "Accept" => "application/json" }
 
     assert_equal(response.status, 200, "has successful response code")
@@ -59,7 +59,7 @@ class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
   end
 
   test "should delete a course plan" do
-    plan1 = FactoryGirl.create :course_plan, student_id: 3
+    plan1 = FactoryGirl.create :course_plan, student_id: 3, plan_name: "Plan 1"
     delete "/api/v1/course_plans/#{plan1['id']}", {}, { "Accept" => "application/json" }
     assert_equal(204, response.status)
     

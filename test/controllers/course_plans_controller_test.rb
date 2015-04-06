@@ -3,7 +3,7 @@ require 'test_helper'
 class CoursePlansControllerTest < ActionController::TestCase
   def setup
     @controller = CoursePlansController.new
-    @plan = FactoryGirl.create :course_plan, student_id: 1
+    @plan = FactoryGirl.create :course_plan, student_id: 1, plan_name: "Plan 1"
   end
 
   test "should get new" do
@@ -26,7 +26,7 @@ class CoursePlansControllerTest < ActionController::TestCase
 
   test "should create course plan" do
     assert_difference('CoursePlan.count') do
-      post :create, course_plan: { student_id: 2 }
+      post :create, course_plan: { student_id: 2, plan_name: "Plan 2" }
     end
     assert_redirected_to course_plan_path(assigns(:course_plan))
   end
