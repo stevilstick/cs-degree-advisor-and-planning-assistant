@@ -3,10 +3,10 @@ require 'test_helper'
 class CoursesControllerTest < ActionController::TestCase
   def setup
     @controller = CoursesController.new
-    FactoryGirl.create :course, name: "Algebra", crn: 80506, subject: "MTH", call_number: 101, credit_hours: 3
-    FactoryGirl.create :course, name: "Baroque Art History", crn: 123456, subject: "ARTH", call_number: 4010, credit_hours: 4
-    FactoryGirl.create :course, name: "Principles of Algorithms", crn: 98687, subject: "CS", call_number: 4050, credit_hours: 4
-    FactoryGirl.create :course, name: "Roman Architecture", crn: 98675, subject: "ARTH", call_number: 3050, credit_hours: 3
+    FactoryGirl.create :course, name: "Algebra", subject: "MTH", call_number: 101, credit_hours: 3
+    FactoryGirl.create :course, name: "Baroque Art History", subject: "ARTH", call_number: 4010, credit_hours: 4
+    FactoryGirl.create :course, name: "Principles of Algorithms", subject: "CS", call_number: 4050, credit_hours: 4
+    FactoryGirl.create :course, name: "Roman Architecture", subject: "ARTH", call_number: 3050, credit_hours: 3
   end
 
   test "should get index" do
@@ -41,11 +41,6 @@ class CoursesControllerTest < ActionController::TestCase
     get :index, { query_param: "Subject (ex. CS, MTH, PHYS)", search: "MTH" }
     assert_select "h2", "Algebra"
     assert_select "h2", "Roman Architecture"
-    assert_select "h2", "Baroque Art History"
-  end
-
-  test "index gets one with search by crn" do
-    get :index, { query_param: "CRN Number (ex. 801176)", search: "123456" }
     assert_select "h2", "Baroque Art History"
   end
 end

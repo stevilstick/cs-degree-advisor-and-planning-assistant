@@ -10,8 +10,6 @@ class CoursesController < ApplicationController
           @courses = Course.find_by_fuzzy_course_listing(params[:search], :limit => 10)
         elsif query_param.start_with? "Subject"
           @courses = Course.find_by_fuzzy_subject(params[:search], :limit => 10)
-        elsif query_param.start_with? "CRN"
-          @courses = Course.search("crn", params[:search]).order("name ASC")
         else
           @courses = Course.find_by_fuzzy_name(params[:search], :limit => 10)
         end

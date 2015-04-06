@@ -15,6 +15,7 @@ class Course < ActiveRecord::Base
     subject_changed? || call_number_changed?
   end
 
+  # We can do a strict search by querying on a given field as well
   def self.search(field, query)
     where("#{field} like ?", "%#{query}%") 
   end
