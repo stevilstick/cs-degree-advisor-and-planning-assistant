@@ -2,7 +2,7 @@ require 'test_helper'
 
 class YearTest < ActiveSupport::TestCase
   def setup
-    @plan = FactoryGirl.create :course_plan, student_id: 12
+    @plan = FactoryGirl.create :course_plan, student_id: 12, plan_name: "Plan 1"
     @year = FactoryGirl.create :year, course_plan_id: @plan.id
   end
 
@@ -25,7 +25,7 @@ class YearTest < ActiveSupport::TestCase
 
   test "can save same year for two different plans" do
     year_plan1 = FactoryGirl.create :year, {course_plan_id: @plan.id, year: 2016}
-    new_plan = FactoryGirl.create :course_plan, student_id: 13
+    new_plan = FactoryGirl.create :course_plan, student_id: 13, plan_name: "Plan 2"
     year_plan2 = FactoryGirl.create :year, {course_plan_id: new_plan.id, year: 2016}
 
     assert year_plan2.valid?, "Cannot create year object with same year value for second course plan"
@@ -38,6 +38,12 @@ class YearTest < ActiveSupport::TestCase
     semesters = ['Spring','Summer','Fall']
     @year.semesters.each_with_index do |semester, i|
       assert semester.name === semesters[i]
+    end
+  end
+
+  test "should destroy dependent semesters for a destroyed year" do
+    assert_difference('Semester.count', -3) do
+      Year.destroy(@year.id)
     end
   end
 end

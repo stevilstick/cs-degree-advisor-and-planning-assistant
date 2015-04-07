@@ -56,5 +56,8 @@ group :development, :test do
   #required for Windows
   gem 'tzinfo'
   gem 'tzinfo-data'
+
+  # windows didn't like turbolinks-2.5.3
+  gem 'coffee-script-source', '1.8.0'
 end
 

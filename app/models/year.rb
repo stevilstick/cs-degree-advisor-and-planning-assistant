@@ -1,5 +1,4 @@
 class Year < ActiveRecord::Base
-  validates_length_of :semesters, :maximum => 3, :message=>'You may only add up to three semesters to a year.'
   belongs_to :course_plan
   has_many :semesters, dependent: :destroy
   validates :year, uniqueness: { :scope => [:year, :course_plan_id], message: "Cannot add the same year twice" }
@@ -8,6 +7,11 @@ class Year < ActiveRecord::Base
   after_save :add_semesters
 
   def add_semesters
-    self.semesters.create([{name:'Spring'},{name:'Summer'},{name:'Fall'}])
+    defaults = Rails.configuration.years[:default_semesters]
+    semesters = []
+    defaults.each do |sem|
+      semesters << {name:sem}
+    end
+    self.semesters.create(semesters)
   end
 end

@@ -3,10 +3,29 @@ require 'test_helper'
 class CoursesControllerTest < ActionController::TestCase
   def setup
     @controller = CoursesController.new
-    FactoryGirl.create :course, name: "Algebra", subject: "MTH", call_number: 101, credit_hours: 3
-    FactoryGirl.create :course, name: "Baroque Art History", subject: "ARTH", call_number: 4010, credit_hours: 4
-    FactoryGirl.create :course, name: "Principles of Algorithms", subject: "CS", call_number: 4050, credit_hours: 4
-    FactoryGirl.create :course, name: "Roman Architecture", subject: "ARTH", call_number: 3050, credit_hours: 3
+    FactoryGirl.create :course, name: "Algebra", subject: "MTH", call_number: 101, credit_hours: 3, description: "Description"
+    FactoryGirl.create :course, name: "Baroque Art History", subject: "ARTH", call_number: 4010, credit_hours: 4, description: "Description"
+    FactoryGirl.create :course, name: "Principles of Algorithms", subject: "CS", call_number: 4050, credit_hours: 4, description: "Description"
+    FactoryGirl.create :course, name: "Roman Architecture", subject: "ARTH", call_number: 3050, credit_hours: 3, description: "Description"
+  end
+
+ test "should get new" do
+    get :new
+    assert_response :success
+    assert_template :new
+  end
+
+  test "should get show" do
+    get(:show, { id: 1 }) 
+    assert_response :success
+    assert_template :show
+  end
+
+  test "should create course" do
+    assert_difference('Course.count') do
+      post :create, course: { name: "computer science 1", subject: "CS", call_number: 1050, credit_hours: 4, description: "this is a description" }
+    end
+    assert_redirected_to course_path(assigns(:course))
   end
 
   test "should get index" do

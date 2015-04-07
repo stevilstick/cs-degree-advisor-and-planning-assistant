@@ -5,6 +5,10 @@ class CoursePlansController < ApplicationController
     @course_plan = CoursePlan.new
   end
   
+  def index
+    @course_plans = CoursePlan.all
+  end
+  
   def create
     @course_plan = CoursePlan.new(plan_params)
     if @course_plan.save
@@ -44,6 +48,6 @@ class CoursePlansController < ApplicationController
     end
     
     def plan_params
-      params.require(:course_plan).permit(:student_id)
+      params.require(:course_plan).permit(:student_id, :plan_name)
     end
 end

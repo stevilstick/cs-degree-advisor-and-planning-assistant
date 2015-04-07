@@ -3,13 +3,15 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'course_plans#show', :defaults => { :id => 1 } # id: 1 is seeded by `rake db:seed`
+  root 'course_plans#index'
 
   get 'course_plans/new'
-  get 'courses/cs1'
+  
+  get 'courses/new'
+  get 'courses/show'
   get 'courses' => 'courses#index'
   get 'signup' => 'users#new'
-  resources :users, :course_plans, :semesters, :years
+  resources :users, :course_plans, :semesters, :years, :courses, :course_instances
 
   namespace :api do
     namespace :v1 do

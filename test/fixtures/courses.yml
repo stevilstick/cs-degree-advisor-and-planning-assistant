@@ -1,18 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   name: Computer Science 1
   subject: CS
   call_number: 1050
   credit_hours: 4
 
 two:
+  id: 2
   name: Computer Science 2
   subject: CS
   call_number: 2050
   credit_hours: 4
 
 three:
+  id: 3
   name: Principles of Programming Languages
   subject: CS
   call_number: 3210
