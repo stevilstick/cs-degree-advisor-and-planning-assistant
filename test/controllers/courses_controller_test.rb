@@ -1,7 +1,15 @@
 require 'test_helper'
 
 class CoursesControllerTest < ActionController::TestCase
-  test "should get new" do
+  def setup
+    @controller = CoursesController.new
+    FactoryGirl.create :course, name: "Algebra", subject: "MTH", call_number: 101, credit_hours: 3, description: "Description"
+    FactoryGirl.create :course, name: "Baroque Art History", subject: "ARTH", call_number: 4010, credit_hours: 4, description: "Description"
+    FactoryGirl.create :course, name: "Principles of Algorithms", subject: "CS", call_number: 4050, credit_hours: 4, description: "Description"
+    FactoryGirl.create :course, name: "Roman Architecture", subject: "ARTH", call_number: 3050, credit_hours: 3, description: "Description"
+  end
+
+ test "should get new" do
     get :new
     assert_response :success
     assert_template :new
@@ -20,4 +28,38 @@ class CoursesControllerTest < ActionController::TestCase
     assert_redirected_to course_path(assigns(:course))
   end
 
+  test "should get index" do
+    get :index
+    assert_response :success
+    assert_template :index
+    assert_not_nil assigns(:courses)
+  end
+
+  test "index should get all" do
+    get :index
+    assert_select "h2", "Algebra"
+    assert_select "h2", "Roman Architecture"
+    assert_select "h2", "Principles of Algorithms"
+    assert_select "h2", "Baroque Art History"
+  end
+
+  test "index gets some with fuzzy search by name" do
+    get :index, { query_param: "Course Name (ex. Computer Science)", search: "algo" }
+    assert_select "h2", "Algebra"
+    assert_select "h2", "Principles of Algorithms"
+  end
+
+  test "index gets some with fuzzy search by course listing" do
+    get :index, { query_param: "Course Listing (ex. CS 1050)", search: "MTH 4010" }
+    assert_select "h2", "Algebra"
+    assert_select "h2", "Roman Architecture"
+    assert_select "h2", "Baroque Art History"
+  end
+
+  test "index gets some with fuzzy search by subject" do
+    get :index, { query_param: "Subject (ex. CS, MTH, PHYS)", search: "MTH" }
+    assert_select "h2", "Algebra"
+    assert_select "h2", "Roman Architecture"
+    assert_select "h2", "Baroque Art History"
+  end
 end

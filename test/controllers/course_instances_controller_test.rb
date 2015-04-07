@@ -4,7 +4,7 @@ class CourseInstancesControllerTest < ActionController::TestCase
 
   def setup
     @student = FactoryGirl.create :user
-    @course_plan = FactoryGirl.create :course_plan, student_id: @student.id
+    @course_plan = FactoryGirl.create :course_plan, student_id: @student.id, plan_name: "Plan 1"
     @year = FactoryGirl.create :year, course_plan_id: @course_plan.id
     @semester = FactoryGirl.create :semester, year_id: @year.id
   end

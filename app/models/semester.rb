@@ -3,4 +3,5 @@ class Semester < ActiveRecord::Base
   has_many :course_instances
   validates_associated :year
   validates_presence_of :year
+  validates_presence_of :name
 end
