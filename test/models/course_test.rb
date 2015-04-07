@@ -3,6 +3,9 @@ require 'test_helper'
 class CourseTest < ActiveSupport::TestCase
 
   def setup
+    @algebra = FactoryGirl.create :course, name: "Algebra", subject: "MTH", call_number: 101, credit_hours: 3, description: "Description"
+    @algorithms = FactoryGirl.create :course, name: "Principles of Algorithms", subject: "CS", call_number: 4050, credit_hours: 4, description: "Description"
+
     @course = Course.new(name: "computer science 1", subject: "CS", call_number: 1050, credit_hours: 4, description: "this is a description")
   end
 
@@ -50,14 +53,6 @@ test "description should be present" do
     assert_not @course.valid?
   end
 
-test "subject should not be too long" do
-    @course.subject = "A" * 2
-    assert @course.valid?
-
-    @course.subject = "A" * 3
-    assert_not @course.valid?
-  end
-
 test "call number should be integer only" do
     @course.call_number = 2
     assert @course.valid?
@@ -74,4 +69,13 @@ test "credit hours should be integer only" do
     assert_not @course.valid?
   end
 
+  test "search should return on successful query" do
+    @course1 = Course.search("name", "Algebra")[0]
+    assert @course1.eql? @algebra
+  end
+
+  test "search should not return a result on unsuccessful query" do
+    @course1 = Course.search("name", "Algbra")[0]
+    assert @course1.is_a? NilClass
+  end
 end

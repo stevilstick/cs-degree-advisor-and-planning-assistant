@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   root 'course_plans#index'
 
   get 'course_plans/new'
+  
   get 'courses/new'
   get 'courses/show'
+  get 'courses' => 'courses#index'
   get 'signup' => 'users#new'
   resources :users, :course_plans, :semesters, :years, :courses, :course_instances
 
