@@ -1,5 +1,6 @@
 class CourseInstancesController < ApplicationController
-  
+  before_action :set_course_instance, only: [:destroy]
+
   # GET /course_instances/new
   def new
   	@course_instance = CourseInstance.new
@@ -18,6 +19,18 @@ class CourseInstancesController < ApplicationController
         format.html { redirect_to course_plan_path( @course_instance.semester.year.course_plan), status: :unprocessable_entity }
         format.json { render json: @course_instance.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # DELETE /course_instances/1
+  # DELETE /course_instances/1.json
+  def destroy
+    course_plan = @course_instance.semester.year.course_plan
+    @course_instance.destroy
+    respond_to do |format|
+      format.html { redirect_to course_plan_path(course_plan),
+                                course_instance_notice: 'Course was successfully deleted.' }
+      format.json { head :no_content }
     end
   end
 

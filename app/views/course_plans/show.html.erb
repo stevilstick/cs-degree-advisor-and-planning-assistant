@@ -1,5 +1,6 @@
 <div class="col-xs-12 col-md-10 col-md-offset-1">
-  <h1>Course Plan  <%= @course_plan.plan_name %></h1>
+  <h1>Course Plan: "<%= @course_plan.plan_name %>"</h1>
+  <p><%= link_to 'Go back to home page', course_plans_path %></p>
   <hr>
 </div>
 <div class="col-xs-12 col-md-10 col-md-offset-1">
@@ -56,12 +57,22 @@
                           <div class="panel panel-info">
                             <div class="panel-heading">
                               <div class="container-fluid">
-                                <%= instance.course.name %>
+                                <span class="col-xs-10">
+                                  <%= instance.course.name %>
+                                </span>
+                                <strong class="col-xs-2 text-right">
+                                  <%= link_to 'x',
+                                              instance,
+                                              method: :delete,
+                                              class: 'text-danger',
+                                              title: 'Remove this course from this semester.' %>
+                                </strong>
                               </div>
                             </div>
                           </div>
                           <% end %>
                       <% end %>
+                      <p class="text-muted"><%= course_instance_notice %></p>
                       <%= render 'course_instances/form', semester: semester %>
                     </div>
                   </div>
