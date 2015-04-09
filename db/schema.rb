@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(version: 20150405204659) do
     t.string   "subject"
     t.integer  "call_number"
     t.integer  "credit_hours"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "description"
   end
 
   create_table "degree_requirements", force: :cascade do |t|
