@@ -1,0 +1,14 @@
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+  <h1>Update Course Plan Name</h1>
+  <p><%= link_to 'Go back to course plan', course_plan_path(@course_plan) %></p>
+
+    <%= form_for(@course_plan) do |f| %>
+        <%= render 'shared/error_messages', object: @course_plan %>
+
+        <%= f.label :plan_name %>
+        <%= f.text_field :plan_name, class: 'form-control' %>
+
+        <%= f.submit "Update Plan", class: "btn btn-primary" %>
+    <% end %>
+
+</div>

@@ -37,6 +37,12 @@ class CoursePlansControllerTest < ActionController::TestCase
     assert_redirected_to course_plan_path(assigns(:course_plan))
   end
 
+  test "should update course plan name" do
+    put :update, id: @plan.id, course_plan: { plan_name: "changed plan name" }
+    assert_equal "changed plan name", assigns(:course_plan).plan_name
+    assert_redirected_to course_plan_path(assigns(:course_plan))
+  end
+
   test "should destroy course plan" do
     assert_difference('CoursePlan.count', -1) do
       delete :destroy, { id: @plan.id }

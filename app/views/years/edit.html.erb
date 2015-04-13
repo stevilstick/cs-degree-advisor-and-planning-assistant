@@ -1,0 +1,14 @@
+<div class="col-xs-12 col-md-10 col-md-offset-1">
+    <h1>Update Year</h1>
+    <p><%= link_to 'Go back to course plan', course_plan_path(@year.course_plan) %></p>
+
+    <%= form_for(@year) do |f| %>
+        <%= render 'shared/error_messages', object: @year %>
+
+        <%= f.label :year %>
+        <%= f.number_field :year, value: @year.year, class: 'form-control' %>
+
+        <%= f.submit "Update Year", class: "btn btn-primary" %>
+    <% end %>
+
+</div>
