@@ -4,7 +4,6 @@ class YearsControllerTest < ActionController::TestCase
   def setup
     @plan1 = FactoryGirl.create :course_plan, student_id: 3, plan_name: "Plan 1"
     @year = FactoryGirl.create :year, {course_plan_id: @plan1.id, year: 2020}
-    @year2 = FactoryGirl.create :year, {course_plan_id: @plan1.id, year: 2021}
   end
 
   test "should create year" do
