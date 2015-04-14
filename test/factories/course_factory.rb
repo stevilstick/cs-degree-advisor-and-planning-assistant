@@ -4,5 +4,6 @@ FactoryGirl.define do
     subject "CS"
     call_number 1050
     credit_hours 4
+    description "Introduction to CS"
   end
 end
