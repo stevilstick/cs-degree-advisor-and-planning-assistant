@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, :course_plans, :semesters
+      resources :users, :course_plans, :semesters, :course_instances
     end
   end
   # Example of regular route:
