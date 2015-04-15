@@ -4,7 +4,7 @@ class Year < ActiveRecord::Base
   validates :year, uniqueness: { :scope => [:year, :course_plan_id], message: "Cannot add the same year twice" }
   validates :course_plan_id, presence: true
 
-  after_save :add_semesters
+  after_create :add_semesters
 
   def add_semesters
     defaults = Rails.configuration.years[:default_semesters]

@@ -35,4 +35,9 @@ class SemestersControllerTest < ActionController::TestCase
     assert_redirected_to course_plan_path(@course_plan.id)
   end
 
+  test "should update semester name" do
+    put :update, id: @semester.id, semester: {name: 'Spring'}
+    assert_equal 'Spring', assigns(:semester).name
+  end
+
 end

@@ -30,6 +30,21 @@ class YearsController < ApplicationController
     end
   end
 
+  def edit
+    @year = Year.find(params[:id])
+  end
+
+  def update
+    @year = Year.find(params[:id])
+    respond_to do |format|
+      if @year.update(year_params)
+        format.html { redirect_to course_plan_path(@year.course_plan), notice: 'Year was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
   private
 
     def year_params

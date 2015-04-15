@@ -5,6 +5,7 @@ one:
   name: Computer Science 1
   subject: CS
   call_number: 1050
+  description: "Hardee har har"
   credit_hours: 4
 
 two:
@@ -12,6 +13,7 @@ two:
   name: Computer Science 2
   subject: CS
   call_number: 2050
+  description: "Can you whiz on queue and finish with a headstand?"
   credit_hours: 4
 
 three:
@@ -19,4 +21,5 @@ three:
   name: Principles of Programming Languages
   subject: CS
   call_number: 3210
+  description: "I don't think so."
   credit_hours: 4

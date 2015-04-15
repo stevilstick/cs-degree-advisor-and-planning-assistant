@@ -46,7 +46,7 @@ class SemestersController < ApplicationController
   def update
     respond_to do |format|
       if @semester.update(semester_params)
-        format.html { redirect_to @semester, notice: 'Semester was successfully updated.' }
+        format.html { redirect_to @semester.year.course_plan, notice: 'Semester was successfully updated.' }
         format.json { render :show, status: :ok, location: @semester }
       else
         format.html { render :edit }
