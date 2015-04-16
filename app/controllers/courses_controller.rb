@@ -38,6 +38,21 @@ class CoursesController < ApplicationController
     end
   end
 
+  def edit
+    @course = Course.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:id])
+    respond_to do |format|
+      if @course.update(course_params)
+        format.html { redirect_to course_path(@course), notice: 'Course was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
   private
 
     def course_params
