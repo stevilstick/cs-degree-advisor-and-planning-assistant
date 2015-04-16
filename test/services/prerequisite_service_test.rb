@@ -20,8 +20,8 @@ class PrerequisiteServiceTest < ActionController::TestCase
     context = {course_id: 4}
     test_req = PrerequisiteService.getPrerequisites(context)
     assert test_req.length == 2, "Making sure it only found one prerequisite for CS2"
-    assert test_req[0].name == "Computer Organization 2"
-    assert test_req[1].name == "Computer Science 1"
+    assert test_req[0].name == "Computer Science 2", "course name =" + test_req[0].name
+    assert test_req[1].name == "Computer Organization 2",  "course name =" + test_req[1].name
   end
   
 end
