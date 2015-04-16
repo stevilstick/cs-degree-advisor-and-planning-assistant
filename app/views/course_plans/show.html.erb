@@ -84,7 +84,13 @@
                           <% end %>
                       <% end %>
                       <p class="text-muted"><%= course_instance_notice %></p>
-                      <%= render 'course_instances/form', semester: semester %>
+                      <%= link_to 'Add a Course', 
+                                    {:controller => "courses", 
+                                        :action => "index", 
+                                        :semester_id => semester.id,
+                                        :course_plan_id => @course_plan.id },
+                                        title: 'Search for a course and add it to this semester',
+                                        class: 'btn btn-primary' %>
                     </div>
                   </div>
                 </div>

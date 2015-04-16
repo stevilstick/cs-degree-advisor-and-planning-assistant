@@ -6,6 +6,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h2><%= course.name %></h2>
+          <%= render 'course_instances/form', semester: @semester, course: course %>
         </div>
         <div class="panel-body">
           <div class="row">

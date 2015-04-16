@@ -18,6 +18,8 @@ class CoursesController < ApplicationController
   end
 
   def index
+    @semester_id = params[:semester_id]
+    @semester = Semester.find(@semester_id) 
     if params[:search]
       # Need TODO allow searching by different attributes find_by_fuzzy_attribute
       if params[:query_param]
