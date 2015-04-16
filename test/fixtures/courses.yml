@@ -16,8 +16,16 @@ two:
   description: "Can you whiz on queue and finish with a headstand?"
   credit_hours: 4
 
-three:
+two:
   id: 3
+  name: Computer Organization 2
+  subject: CS
+  call_number: 2400
+  description: "part two of comp org 1"
+  credit_hours: 4
+
+three:
+  id: 4
   name: Principles of Programming Languages
   subject: CS
   call_number: 3210

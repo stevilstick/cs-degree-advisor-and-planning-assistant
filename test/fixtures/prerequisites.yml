@@ -6,5 +6,9 @@ one:
   target_course_id: 1
 
 two:
-  this_course_id: 3
+  this_course_id: 4
   target_course_id: 2
+
+two:
+  this_course_id: 4
+  target_course_id: 3
