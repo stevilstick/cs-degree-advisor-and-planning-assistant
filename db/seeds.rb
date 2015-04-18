@@ -11,7 +11,15 @@ CoursePlan.create(student_id: 1, plan_name: "Super Secret Graduation Plan")
 CourseInstance.create(course_id: 1, semester_id: 1, student_id: 1, rotation_id: 1)
 
 Year.create!(year: 2015, course_plan_id: 1)
-Semester.create!(name: 'Fall', year_id: 1)
+
+# Actual semester info for metro
+SemesterDefinition.create!(id:1, name:"Winterim", max_credit_hours: 3)
+SemesterDefinition.create!(id:2, name:"Spring", max_credit_hours: 18)
+SemesterDefinition.create!(id:3, name:"Maymester", max_credit_hours: 3)
+SemesterDefinition.create!(id:4, name:"Summer", max_credit_hours: 12)
+SemesterDefinition.create!(id:5, name:"Fall", max_credit_hours: 18)
+
+Semester.create!(semester_definition_id: 1, year_id: 1)
 
 # Courses required for CS 
 Course.create!(name: 'Computer Science 1', subject: 'CS', call_number: 1050, credit_hours:4,

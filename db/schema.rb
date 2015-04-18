@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405204659) do
+ActiveRecord::Schema.define(version: 20150417154854) do
 
   create_table "advisor_students", force: :cascade do |t|
     t.integer  "student_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150405204659) do
     t.integer  "rotation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "prerequisites"
   end
 
   add_index "course_instances", ["course_id"], name: "index_course_instances_on_course_id"
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150405204659) do
     t.string   "name"
     t.string   "subject"
     t.integer  "call_number"
-    t.integer  "credit_hours"
+    t.decimal  "credit_hours", precision: 10, scale: 2
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -86,6 +87,8 @@ ActiveRecord::Schema.define(version: 20150405204659) do
     t.integer  "target_course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "required_credit_hours", precision: 10, scale: 2
+    t.integer  "type"
   end
 
   add_index "prerequisites", ["target_course_id"], name: "index_prerequisites_on_target_course_id"
@@ -97,13 +100,22 @@ ActiveRecord::Schema.define(version: 20150405204659) do
     t.datetime "updated_at"
   end
 
-  create_table "semesters", force: :cascade do |t|
-    t.integer  "year_id"
+  create_table "semester_definitions", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "inYearPosition"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.decimal  "max_credit_hours", precision: 10, scale: 2
   end
 
+  create_table "semesters", force: :cascade do |t|
+    t.integer  "year_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "semester_definition_id"
+  end
+
+  add_index "semesters", ["semester_definition_id"], name: "index_semesters_on_semester_definition_id"
   add_index "semesters", ["year_id"], name: "index_semesters_on_year_id"
 
   create_table "students", force: :cascade do |t|

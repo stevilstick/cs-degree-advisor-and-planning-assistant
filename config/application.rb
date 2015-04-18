@@ -24,7 +24,7 @@ module CsDegreeAdvisorAndPlanningAssistant
     config.active_record.raise_in_transactional_callbacks = true
 
     config.years = {
-        default_semesters: %w(Spring Summer Fall)
+        default_semesters: [2, 3, 4]
     }
   end
 end
