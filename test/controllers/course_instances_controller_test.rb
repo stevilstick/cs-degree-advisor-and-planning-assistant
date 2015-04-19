@@ -18,8 +18,8 @@ class CourseInstancesControllerTest < ActionController::TestCase
 
   # Will need to add verification tests for duplicate courses
   test "should create course instance" do
-    assert_difference('@semester.course_instances.count') do
-      post :create, course_instance: {semester_id: @semester.id, course_id: 1}
+    assert_difference('@semester.course_instances.count', 1) do
+      post :create, course_instance: {semester_id: @semester.id, course_id: 2}
     end
     assert_response :redirect
   end
