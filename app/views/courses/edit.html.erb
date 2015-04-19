@@ -1,0 +1,28 @@
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h3>Update Course</h3>
+    <%= form_for(@course) do |f| %>
+        <%= render 'shared/error_messages', object: @course %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+        <%= f.label :subject %> <h0> (abbreviation) </h0>
+        <%= f.text_field :subject, class: 'form-control' %>
+
+        <%= f.label :call_number %>
+        <%= f.number_field :call_number, class: 'form-control' %>
+
+        <%= f.label :credit_hours %>
+        <%= f.number_field :credit_hours, class: 'form-control' %>
+
+        <%= f.label :description %>
+        <%= f.text_field :description, class: 'form-control' %>
+
+
+        <%= f.submit "Update Course", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
