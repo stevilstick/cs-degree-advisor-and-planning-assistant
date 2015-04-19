@@ -52,17 +52,16 @@ class ApiV1CourseInstancesTest < ActionDispatch::IntegrationTest
 
     body = JSON.parse(response.body)
     course_instances = body['course_instances'].map { |m| m["course_id"] }
-    assert_equal([1, 2, 3, 5, 7, 9], course_instances.sort)
-    assert_equal(6, body['course_instances'].length)
+    assert_equal([5, 7, 9], course_instances.sort)
+    assert_equal(3, body['course_instances'].length)
     course_instances = body['course_instances'].map { |m| m["semester_id"] }
-    assert_equal([1, 1, 2, 2, 2, 2], course_instances.sort)
-    assert_equal(6, body['course_instances'].length)
+    assert_equal([2, 2, 2], course_instances.sort)
+    assert_equal(3, body['course_instances'].length)
     course_instances = body['course_instances'].map { |m| m["student_id"] }
-    assert_equal([1, 1, 2, 8, 10, 80], course_instances.sort)
+    assert_equal([8, 10, 80], course_instances.sort)
     course_instances = body['course_instances'].map { |m| m["rotation_id"] }
-    assert_equal([1, 2, 2, 3, 5, 7], course_instances.sort)
-    assert_equal(6, body['course_instances'].length)
-    assert_equal(6, body['course_instances'].length)
+    assert_equal([3, 5, 7], course_instances.sort)
+    assert_equal(3, body['course_instances'].length)
     assert_not_nil(body['course_instances'].first['id'])
     assert_not_nil(body['course_instances'].first['created_at'])
   end
