@@ -2,7 +2,8 @@ require 'test_helper'
 
 class AddCourseToPlanFromSearchTest < ActionDispatch::IntegrationTest
   def setup
-    Capybara.current_driver = Capybara.javascript_driver # :selenium by default
+    #Capybara.current_driver = Capybara.javascript_driver # :selenium by default
+    Capybara.javascript_driver = :poltergeist
   end
 
   test "user creates new course plan and adds a course from the search view" do
