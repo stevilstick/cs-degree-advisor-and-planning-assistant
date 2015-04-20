@@ -1,3 +1,5 @@
 class SemesterDefinition < ActiveRecord::Base
-  validates_presence_of :name
+  belongs_to :semester
+  validates :name, presence: true
+  validates :in_year_position, presence: true
 end

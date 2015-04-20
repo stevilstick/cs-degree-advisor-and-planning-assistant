@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :semester_definition do
     name "Winterim"
-    inYearPosition 1
+    in_year_position 1
   end
 end

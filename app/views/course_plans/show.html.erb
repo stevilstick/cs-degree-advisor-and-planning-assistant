@@ -42,7 +42,7 @@
                     <div class="panel-heading">
                       <div class="container-fluid">
                         <div class="col-xs-6">
-                          <h4><%= semester.name %></h4>
+                          <h4><%= SemesterDefinition.find(semester.semester_definitions_id).name %></h4>
                         </div>
                         <div class="col-xs-6 text-right">
                             <ul class="list-inline">

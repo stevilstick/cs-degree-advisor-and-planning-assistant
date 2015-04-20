@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150417154854) do
     t.datetime "updated_at"
     t.decimal  "required_credit_hours", precision: 10, scale: 2
     t.integer  "type"
+    t.string   "subject"
   end
 
   add_index "prerequisites", ["target_course_id"], name: "index_prerequisites_on_target_course_id"
@@ -101,21 +102,24 @@ ActiveRecord::Schema.define(version: 20150417154854) do
   end
 
   create_table "semester_definitions", force: :cascade do |t|
+    t.integer  "semesters_id"
     t.string   "name"
-    t.integer  "inYearPosition"
+    t.integer  "in_year_position"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.decimal  "max_credit_hours", precision: 10, scale: 2
   end
 
+  add_index "semester_definitions", ["semesters_id"], name: "index_semester_definitions_on_semesters_id"
+
   create_table "semesters", force: :cascade do |t|
     t.integer  "year_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "semester_definition_id"
+    t.integer  "semester_definitions_id"
   end
 
-  add_index "semesters", ["semester_definition_id"], name: "index_semesters_on_semester_definition_id"
+  add_index "semesters", ["semester_definitions_id"], name: "index_semesters_on_semester_definitions_id"
   add_index "semesters", ["year_id"], name: "index_semesters_on_year_id"
 
   create_table "students", force: :cascade do |t|
