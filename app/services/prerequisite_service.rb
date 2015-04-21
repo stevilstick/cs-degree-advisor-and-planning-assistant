@@ -10,6 +10,18 @@ class PrerequisiteService
       req_ids.insert(-1, r.target_course_id) #adding id of required course to the end of array
     end
     return Course.find(req_ids)
-  end 
-  
+  end
+
+  # Returns an array with the courses for which the course with course id is required
+  # P.S this is a 'static' method, should be called PrerequisiteService.getPrerequisites context
+  # Context most be in the format: {course_id: course.id}
+  def self.isRequiredFor(context)
+    reqs = Prerequisite.where(:target_course_id => context[:course_id])
+    req_ids = Array.new
+    reqs.each do |r|
+      req_ids.insert(-1, r.this_course_id) #adding id of required course to the end of array
+    end
+    return Course.find(req_ids)
+  end
+
 end
