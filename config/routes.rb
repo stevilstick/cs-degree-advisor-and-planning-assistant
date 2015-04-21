@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   get 'courses' => 'courses#index'
   get 'signup' => 'users#new'
   resources :users, :course_plans, :semesters, :years, :courses, :course_instances
+  resources :courses do 
+    collection do
+      get 'add_course_from_search', action: :add_course_to_course_plan
+    end
+  end
 
   namespace :api do
     namespace :v1 do

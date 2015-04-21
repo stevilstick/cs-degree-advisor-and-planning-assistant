@@ -43,6 +43,7 @@ class ApiV1CourseInstancesTest < ActionDispatch::IntegrationTest
   end
 
   test "should return all the course instances" do
+    CourseInstance.destroy_all
     FactoryGirl.create :course_instance, course_id: 5, semester_id: 2, student_id: 10, rotation_id: 5
     FactoryGirl.create :course_instance, course_id: 7, semester_id: 2, student_id: 8, rotation_id: 7
     FactoryGirl.create :course_instance, course_id: 9, semester_id: 2, student_id: 80, rotation_id: 3

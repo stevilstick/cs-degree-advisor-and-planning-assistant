@@ -46,9 +46,9 @@ class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
     assert_equal(response.status, 200, "has successful response code")
 
     body = JSON.parse(response.body)
-    course_plans = body['course_plans'].map { |m| m["student_id"] }
+    course_plans = body['course_plans'].map { |m| m["student_id"] }.compact
     assert_equal([3, 7, 9], course_plans.sort)
-    assert_equal(3, body['course_plans'].length)
+    assert_equal(3, course_plans.length)
     assert_not_nil(body['course_plans'].first['id'])
     assert_not_nil(body['course_plans'].first['created_at'])
   end
