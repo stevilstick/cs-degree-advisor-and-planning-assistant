@@ -15,7 +15,7 @@ class ApiV1CoursesTest < ActionDispatch::IntegrationTest
     assert_equal("UW", body['course']['subject'])
     assert_equal(4210, body['course']['call_number'])
     assert_equal("Aqua crafts", body['course']['description'])
-    assert_equal(3, body['course']['credit_hours'])
+    assert_equal("3.0", body['course']['credit_hours'])
   end
 
   test "should update a course" do
@@ -26,7 +26,7 @@ class ApiV1CoursesTest < ActionDispatch::IntegrationTest
     body = JSON.parse(response.body)
     assert_equal("Tomfoolery", body['course']['name'])
     assert_equal("Horseplay", body['course']['description'])
-    assert_equal(77, body['course']['credit_hours'])
+    assert_equal("77.0", body['course']['credit_hours'])
     assert_equal(600, body['course']['call_number'])
     assert_equal("PU", body['course']['subject'])
   end
@@ -38,13 +38,13 @@ class ApiV1CoursesTest < ActionDispatch::IntegrationTest
 
   test "should return a single course" do
     course = FactoryGirl.create :course, name: "Applied Lolligagging", subject: "x-treme", call_number: 777, 
-      credit_hours: 81, description: "Jumping out of planes"
+      credit_hours: 81.0, description: "Jumping out of planes"
     get "/api/v1/courses/#{course['id']}", {}, { "Accept" => "application/json" }
     body = JSON.parse(response.body)
 
     assert_equal("Applied Lolligagging", body['course']['name'])
     assert_equal("Jumping out of planes", body['course']['description'])
-    assert_equal(81, body['course']['credit_hours'])
+    assert_equal("81.0", body['course']['credit_hours'])
     assert_equal(777, body['course']['call_number'])
     assert_equal("x-treme", body['course']['subject'])
     assert_equal(200, response.status, "has successful response code")
@@ -56,7 +56,7 @@ class ApiV1CoursesTest < ActionDispatch::IntegrationTest
   test "should return all the courses" do
     FactoryGirl.create :course, name: "a", description: "1.12", credit_hours: 88, call_number: 5, subject: "ahhh!!!!"
     FactoryGirl.create :course, name: "Do you feel lucky punk?", description: "Hamburgulars greatest hits", 
-      credit_hours: 1, call_number: 88888888, subject: "Mickey Deeez"
+      credit_hours: 1.0, call_number: 88888888, subject: "Mickey Deeez"
     get "/api/v1/courses", {}, { "Accept" => "application/json" }
 
     assert_equal(response.status, 200, "has successful response code")

@@ -4,6 +4,9 @@ class YearTest < ActiveSupport::TestCase
   def setup
     @plan = FactoryGirl.create :course_plan, student_id: 12, plan_name: "Plan 1"
     @year = FactoryGirl.create :year, course_plan_id: @plan.id
+    @fall = FactoryGirl.create :semester_definition, name: "Fall", id: 5
+    @spring = FactoryGirl.create :semester_definition, name: "Spring", id:2
+    @summer = FactoryGirl.create :semester_definition, name: "Summer", id:4
   end
 
   test "year invalid without a course plan" do
@@ -33,11 +36,11 @@ class YearTest < ActiveSupport::TestCase
     assert_equal year_plan1.year, 2016, "Year value was changed erroneously"
   end
 
-  test "should autogenerate spring, summer, and fall semester relations" do
+  test "should auto generate spring, summer, and fall semester relations" do
     assert @year.semesters.length === 3
-    semesters = ['Spring','Summer','Fall']
+    semesters = [@spring.id,@summer.id, @fall.id]
     @year.semesters.each_with_index do |semester, i|
-      assert semester.name === semesters[i]
+      assert semester.semester_definitions_id === semesters[i], "actual: " + semester.semester_definitions_id.to_s + " expected: " + semesters[i].to_s + " for i:" + i.to_s
     end
   end
 

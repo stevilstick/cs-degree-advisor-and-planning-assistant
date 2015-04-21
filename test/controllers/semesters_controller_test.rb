@@ -5,27 +5,29 @@ class SemestersControllerTest < ActionController::TestCase
     @student = FactoryGirl.create :user
     @course_plan = FactoryGirl.create :course_plan, student_id: @student.id, plan_name: "Plan 1"
     @year = FactoryGirl.create :year, course_plan_id: @course_plan.id
-    @semester = FactoryGirl.create :semester, year_id: @year.id, name: 'Fall'
+    @winterim = FactoryGirl.create :semester_definition, name: "Winterim"
+    @semester = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: @winterim.id
   end
 
   test "should create semester" do
 
 
     assert_difference('Semester.count') do
-      post :create, semester: {name: 'Fall', year_id: @year.id}
+      post :create, semester: {semester_definition_id: 2, year_id: @year.id}
     end
 
     assert_redirected_to course_plan_path(@course_plan.id)
   end
 
-  test "should not create a semester without a name" do
-    assert_no_difference('Semester.count') do
-      post :create, semester: {name: '', year_id: @year.id}
-    end
+# name no longer exists in semesters
+#  test "should not create a semester without a name" do
+#    assert_no_difference('Semester.count') do
+#      post :create, semester: {name: '', year_id: @year.id}
+#    end
 
-    assert_redirected_to course_plan_path(@course_plan.id)
+#    assert_redirected_to course_plan_path(@course_plan.id)
 
-  end
+#  end
 
   test "should delete a semester" do
     assert_difference 'Semester.count', -1 do
@@ -36,8 +38,8 @@ class SemestersControllerTest < ActionController::TestCase
   end
 
   test "should update semester name" do
-    put :update, id: @semester.id, semester: {name: 'Spring'}
-    assert_equal 'Spring', assigns(:semester).name
+    put :update, id: @semester.id, semester: {semester_definitions_id: 4}
+    assert_equal 4, assigns(:semester).semester_definitions_id
   end
 
 end
