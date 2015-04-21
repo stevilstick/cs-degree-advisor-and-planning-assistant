@@ -49,5 +49,8 @@ Thumbs.db
 # Ignore the default database 
 /db/*.sqlite3*
 
+# Ignore generated Coverage Reports from simplecov
+coverage
+
 
 
