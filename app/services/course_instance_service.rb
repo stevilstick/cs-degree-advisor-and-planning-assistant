@@ -78,7 +78,7 @@ class CourseInstanceService
   # Find all course instances added to previous semesters in this course plan
   # Parameter is a context with the course_plan_id
   # Context must be in the format: {course_plan_id: 1}
-  def self.updatePrerequisiteStates(context)
+  def self.updatePrerequisites(context)
     find_all_in_plan(context).each do |c_i|
       if PrerequisiteService.hasCompletedPrerequisites({course_instance_id: c_i.id})
         c_i.update_column(:prerequisites, 1)
@@ -87,6 +87,5 @@ class CourseInstanceService
       end
     end
   end
-
 
 end
