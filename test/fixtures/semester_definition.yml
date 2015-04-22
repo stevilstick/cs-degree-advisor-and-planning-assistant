@@ -1,0 +1,24 @@
+one:
+  id: 1
+  name: Winter
+  in_year_position: 1
+
+two:
+  id: 2
+  name: Spring
+  in_year_position: 2
+
+three: 
+  id: 3
+  name: Maymester
+  in_year_position: 3
+  
+four: 
+   id: 4
+   name: Summer
+   in_year_position: 4
+   
+five:
+  id: 5
+  name: Fall
+  in_year_position: 5
