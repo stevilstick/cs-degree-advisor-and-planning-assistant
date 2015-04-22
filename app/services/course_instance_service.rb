@@ -53,4 +53,40 @@ class CourseInstanceService
     return course_instances
   end
 
+  # Find all course instances added to previous semesters in this course plan
+  # Parameter is a context with the semester_id
+  # Context must be in the format: {semester_id: 1}
+  def self.find_all_before_semester(context)
+    year = Year.where(context)[0]
+    course_instances = Array.new
+    course_instances.concat(find_by_year({year_id: year.id}))
+    course_instances.concat(find_before_semester(context))
+    return course_instances
+  end
+
+  # Gets all the course instances
+  # Context must be in the format: {course_id: 1}
+  def self.find_all_in_plan(context)
+    years = CoursePlan.where(:id => context[:course_plan_id])[0].years
+    course_instances = Array.new
+    years.each do |y|
+      course_instances.concat(find_by_year({year_id: y.id}))
+    end
+    return course_instances
+  end
+
+  # Find all course instances added to previous semesters in this course plan
+  # Parameter is a context with the course_plan_id
+  # Context must be in the format: {course_plan_id: 1}
+  def self.updatePrerequisiteStates(context)
+    find_all_in_plan(context).each do |c_i|
+      if PrerequisiteService.hasCompletedPrerequisites({course_instance_id: c_i.id})
+        c_i.update_column(:prerequisites, 1)
+      else
+        c_i.update_column(:prerequisites, 0)
+      end
+    end
+  end
+
+
 end

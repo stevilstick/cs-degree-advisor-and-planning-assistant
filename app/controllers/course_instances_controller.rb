@@ -13,6 +13,8 @@ class CourseInstancesController < ApplicationController
 
     respond_to do |format|
       if @course_instance.save
+        #Uncomment when tests for updatePrerequisiteStates have being written and pass
+        #CourseInstanceService.updatePrerequisiteStates({course_plan_id:@course_instance.semester.year.course_plan.id})
         format.html { redirect_to course_plan_path( @course_instance.semester.year.course_plan), notice: 'Course instance was successfully created.' }
         format.json { render :show, status: :created, location: @course_instance }
       else
