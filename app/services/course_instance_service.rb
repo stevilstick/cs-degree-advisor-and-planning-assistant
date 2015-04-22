@@ -57,9 +57,9 @@ class CourseInstanceService
   # Parameter is a context with the semester_id
   # Context must be in the format: {semester_id: 1}
   def self.find_all_before_semester(context)
-    year = Year.where(context)[0]
+    year = Semester.where(:id => context[:semester_id])[0].year
     course_instances = Array.new
-    course_instances.concat(find_by_year({year_id: year.id}))
+    course_instances.concat(find_before_year({year_id: year.id}))
     course_instances.concat(find_before_semester(context))
     return course_instances
   end

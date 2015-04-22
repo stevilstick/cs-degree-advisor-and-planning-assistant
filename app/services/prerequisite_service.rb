@@ -34,7 +34,7 @@ class PrerequisiteService
     all_past_instances.each do |c_i|
       prereqs.each do |p|
         if c_i.course_id == p.id
-          incomplete.remove(p)
+          incomplete.delete(p)
           if incomplete.length == 0
             return incomplete
           end

@@ -44,7 +44,7 @@ class CourseInstancesServicesTest < ActionController::TestCase
   end
 
   # There will be a total of two course instances, 1 in each previous year
-  test "should find course instances with in course plan for previous years, year = 2015" do
+  test "should find course instances with in course plan for previous years, year = 2015.(Testing:find_before_year)" do
     year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
     year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2013
     semester = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
@@ -64,7 +64,7 @@ class CourseInstancesServicesTest < ActionController::TestCase
 
   # There will be a total of two course instances, 1 in each previous semester
   # Fall has 1 course instance
-  test "should find course instances with in year(2015) for semester previous to Fall" do
+  test "should find course instances with in year(2015) for semester previous to Fall.(Testing:find_before_semester)" do
     # To make sure it doesn't check previous years
     year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
     spring = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
@@ -82,6 +82,30 @@ class CourseInstancesServicesTest < ActionController::TestCase
     context = {semester_id:@semester.id} #@semester has fall as definition
     result = CourseInstanceService.find_before_semester(context)
     assert result.length == 2, "Only " + result.length.to_s + " course instances found"
+    assert_equal result[1].id, course2.id, "result should be " + result[1].id.to_s
+    assert_equal result[0].id, course1.id, "result should be " + result[0].id.to_s
+  end
+
+  # There will be a total of three course instances, 1 in each previous semester for this course plan
+  test "should find all course instances previous to Fall 2015(Testing:find_all_before_semester)" do
+    # what it should find
+    year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
+    semester1 = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
+    course1 = FactoryGirl.create :course_instance, semester_id: semester1.id
+
+    semester2 = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 2 #spring
+    semester3 =  FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 4 #summer
+    course2 = FactoryGirl.create :course_instance, semester_id: semester2.id
+    course3 = FactoryGirl.create :course_instance, semester_id: semester3.id
+
+    # to make sure it doesn't get future years
+    year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2016
+    semester4 = FactoryGirl.create :semester, year_id: year2.id, semester_definitions_id: 4 #summer
+    FactoryGirl.create :course_instance, semester_id: semester4.id
+    context = {semester_id:@semester.id} #@semester has fall as definition and year 2015
+    result = CourseInstanceService.find_all_before_semester(context)
+    assert result.length == 3, "Only " + result.length.to_s + " course instances found"
+    assert_equal result[2].id, course3.id, "result should be " + result[2].id.to_s
     assert_equal result[1].id, course2.id, "result should be " + result[1].id.to_s
     assert_equal result[0].id, course1.id, "result should be " + result[0].id.to_s
   end
