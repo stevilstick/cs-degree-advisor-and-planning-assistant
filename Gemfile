@@ -40,6 +40,10 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Code Coverage Analysis Tool
+gem 'simplecov', :require => false, :group => :test
+gem 'simplecov-json', :require => false, :group => :test
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -49,6 +53,11 @@ group :development, :test do
 
   # Factories for creating test data
   gem 'factory_girl_rails', '~> 4.5.0'
+
+  # Capybara for automated functional testing
+  gem 'capybara'
+  gem 'poltergeist'
+  # gem 'selenium-webdriver'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

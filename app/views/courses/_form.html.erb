@@ -1,12 +1,35 @@
-<%= form_tag(courses_path, :method => "get", id: "search-form") do %>
-  <%= select_tag :query_param, options_for_select(
-    ['Course Name (ex. Computer Science)', 
-        'Course Listing (ex. CS 1050)', 
-        'Subject (ex. CS, MTH, PHYS)'], :selected => params[:query_param]) 
-  %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Courses" %>
-  <%= submit_tag "Search", :name => nil %>
-<% end %>
-<%= form_tag(courses_path, :method => "get", id: "get-all-courses") do %>
-  <%= submit_tag "Show All", :name => :show_all %>
-<% end %>
+<div class="row">
+  <div class="col-md-10">
+    <%= form_tag(courses_path, method: "get", id: "search-form", class: 'form-inline') do %>
+        <div class="form-group">
+          <%= label_tag :search %>
+          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Enter search here..." %>
+        </div>
+        <div class="form-group">
+          <%= label_tag :query_param, 'by' %>
+          <%= select_tag :query_param, options_for_select(
+                                             ['Course Name (ex. Computer Science)',
+                                              'Course Listing (ex. CS 1050)',
+                                              'Subject (ex. CS, MTH, PHYS)'], selected: params[:query_param]),
+                         class: 'form-control'
+          %>
+        </div>
+        <%= hidden_field_tag :semester_id, @semester_id %>
+
+
+        <%= submit_tag "Search",
+                       class: 'btn btn-primary',
+                       style: 'margin-right:16px',
+                       name: nil %>
+    <% end %>
+  </div>
+  <div class="col-md-2 text-right">
+
+    <%= form_tag(courses_path, method: "get", id: "get-all-courses") do |f| %>
+        <%= hidden_field_tag :semester_id, @semester_id %>
+        <%= submit_tag "Show All", class: 'btn btn-primary', :name => :show_all %>
+    <% end %>
+
+  </div>
+</div>
+<hr>
