@@ -81,10 +81,8 @@ class CourseInstanceService
   def self.updatePrerequisites(context)
     find_all_in_plan(context).each do |c_i|
       if PrerequisiteService.hasCompletedPrerequisites({course_instance_id: c_i.id})
-        puts("Complete C_I: " + c_i.id.to_s)
         CourseInstance.update(c_i.id, prerequisites: 1)
       else
-        puts("not complete C_I: " + c_i.id.to_s)
         CourseInstance.update(c_i.id, prerequisites: 0)
       end
     end

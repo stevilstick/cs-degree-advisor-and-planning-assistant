@@ -6,7 +6,7 @@ class CourseInstancesServicesTest < ActionController::TestCase
     @course_plan = FactoryGirl.create :course_plan, student_id: @student.id, plan_name: "Plan 1"
     @year = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2015
     @semester = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 5 #id:5 is Fall check fixtures
-    @course_instance = FactoryGirl.create :course_instance, semester_id: @semester.id, id:1, course_id: 1 #CS1050
+    @course_instance = FactoryGirl.create :course_instance, semester_id: @semester.id, id:1, course_id: 2 #CS2050
   end
 
   test "should find course instance with semester_id equal to 1" do
@@ -136,21 +136,14 @@ class CourseInstancesServicesTest < ActionController::TestCase
     year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2013
     semester = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
     semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definitions_id: 4 #summer
-    course1 = FactoryGirl.create :course_instance, semester_id: semester.id, course_id: 2 #CS2050
+    course1 = FactoryGirl.create :course_instance, semester_id: semester.id, course_id: 1 #CS1050
     course2 = FactoryGirl.create :course_instance, semester_id: semester2.id, course_id: 4 #CS3210
 
     context = {course_plan_id: @course_plan.id}
     CourseInstanceService.updatePrerequisites(context)
-    assert_equal 0, CourseInstance.find(course1.id).prerequisites # 1 => true, meaning it has all prerequisites complete
+    assert_equal 1, CourseInstance.find(course1.id).prerequisites # 1 => true, meaning it has all prerequisites complete
     assert_equal 0, CourseInstance.find(course2.id).prerequisites
     assert_equal 1, CourseInstance.find(@course_instance.id).prerequisites # 0 => false, meaning it needs to complete one or more prerequisites
-
-    FactoryGirl.create :course_instance, semester_id: semester2.id, course_id: 3 #CS2400
-
-    CourseInstanceService.updatePrerequisites(context)
-    assert_equal 0, CourseInstance.find(course1.id).prerequisites # 1 => true, meaning it has all prerequisites complete
-    assert_equal 0, CourseInstance.find(course2.id).prerequisites
-    assert_equal 1, CourseInstance.find(@course_instance.id).prerequisites
 
   end
   
