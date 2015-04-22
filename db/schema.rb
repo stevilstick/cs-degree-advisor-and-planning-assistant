@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(version: 20150417154854) do
     t.string   "subject"
     t.integer  "call_number"
     t.decimal  "credit_hours", precision: 10, scale: 2
-    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
   end
 
   create_table "degree_requirements", force: :cascade do |t|
@@ -109,8 +109,6 @@ ActiveRecord::Schema.define(version: 20150417154854) do
     t.datetime "updated_at",                                null: false
     t.decimal  "max_credit_hours", precision: 10, scale: 2
   end
-
-  add_index "semester_definitions", ["semesters_id"], name: "index_semester_definitions_on_semesters_id"
 
   create_table "semesters", force: :cascade do |t|
     t.integer  "year_id"
