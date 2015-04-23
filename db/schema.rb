@@ -110,8 +110,6 @@ ActiveRecord::Schema.define(version: 20150417154854) do
     t.decimal  "max_credit_hours", precision: 10, scale: 2
   end
 
-  add_index "semester_definitions", ["semesters_id"], name: "index_semester_definitions_on_semesters_id"
-
   create_table "semesters", force: :cascade do |t|
     t.integer  "year_id"
     t.datetime "created_at"
