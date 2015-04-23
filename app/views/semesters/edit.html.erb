@@ -2,11 +2,16 @@
     <h1>Update Semester</h1>
     <p><%= link_to 'Go back to course plan', course_plan_path(@semester.year.course_plan) %></p>
 
-    <%= form_for(@semester) do |f| %>
+    <%= form_for(@semester, {:html => {class:'form-inline'}}) do |f| %>
         <%= render 'shared/error_messages', object: @semester %>
 
         <%= f.label :semester %>
-        <%= f.collection_select( :semester_definition_id, SemesterDefinition.all, :id, :name )%>
+        <%= f.collection_select( :semester_definitions_id,
+                                 SemesterDefinition.all,
+                                 :id,
+                                 :name,
+                                 {},
+                                 {class: 'form-control'} )%>
 
         <%= f.submit 'Update Semester', class: 'btn btn-primary' %>
     <% end %>

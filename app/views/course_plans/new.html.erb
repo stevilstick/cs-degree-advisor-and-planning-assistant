@@ -3,10 +3,12 @@
   <p><%= link_to 'Go back to home page', course_plans_path %></p>
 
     <%= form_for(@course_plan) do |f| %>
-        <%= render 'shared/error_messages', object: @course_plan %>
+        <div class="form-group">
+          <%= render 'shared/error_messages', object: @course_plan %>
 
-        <%= f.label :plan_name %>
-        <%= f.text_field :plan_name, class: 'form-control' %>
+          <%= f.label :plan_name %>
+          <%= f.text_field :plan_name, class: 'form-control' %>
+        </div>
 
         <%= f.submit "Create Plan", class: "btn btn-primary" %>
     <% end %>
