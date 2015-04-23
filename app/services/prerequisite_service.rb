@@ -7,7 +7,11 @@ class PrerequisiteService
     reqs = Prerequisite.where(:this_course_id => context[:course_id])
     req_ids = Array.new
     reqs.each do |r|
-      req_ids.insert(-1, r.target_course_id) #adding id of required course to the end of array
+      # this only should only contain those prereqs of type 1
+      # to know what the types mean read data model description
+      if r.prerequisite_type == 1 #default value for type is 1
+        req_ids.insert(-1, r.target_course_id) #adding id of required course to the end of array
+      end
     end
     return Course.find(req_ids)
   end
@@ -47,6 +51,7 @@ class PrerequisiteService
   # Check whether a course has its prerequisites added to a past semester
   # Context must be in the format: {course_instance_id: course_instance.id}
   def self.hasCompletedPrerequisites(context)
+    #this only handles type 1 prerequisites
     return needToBeCompleted(context).empty?
   end
 

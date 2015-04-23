@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20150421162635) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "required_credit_hours", precision: 10, scale: 2
-    t.integer  "type"
+    t.integer  "prerequisite_type",                              default: 1
     t.string   "subject"
   end
 
