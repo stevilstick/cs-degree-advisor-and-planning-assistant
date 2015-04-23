@@ -19,6 +19,7 @@ class CoursePlansController < ApplicationController
   end
 
   def show
+    CourseInstanceService.updatePrerequisites({course_plan_id:@course_plan.id})
   end
 
   def edit

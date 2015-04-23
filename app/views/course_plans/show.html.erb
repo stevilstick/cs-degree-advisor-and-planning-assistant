@@ -75,6 +75,11 @@
                                       <small class="text-muted">
                                         <%= sprintf("%g", instance.course.credit_hours) %> credit hours
                                       </small>
+				      <% if instance.prerequisites == 1 %>
+                                        <h5>complete prereqs</h5>
+                                      <% else %>
+                                        <h5>incomplete prereqs</h5>
+                                      <% end%>
                                     </span>
                                       <strong class="col-xs-2 text-right">
                                         <%= link_to instance,

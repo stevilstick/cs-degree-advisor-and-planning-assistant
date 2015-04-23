@@ -33,32 +33,22 @@ course, students will study      the internal organization, characteristics, per
 system’s functional components. Binary codes and binary      arithmetic, digital logic, central processor organization,
 instruction set architecture, input/output fundamentals, and memory architecture      are covered.")
 
-Prerequisite.create!(this_course_id: organization.id, target_course_id: cs1.id) 
-
 cs2 = Course.create!(name: 'Computer Science 2', subject: 'CS', call_number: 2050, credit_hours:4, description: "This course,
 a continuation of CS 1050,      further emphasizes the concepts of the software development cycle and introduces the
 concept of an abstract data type (ADT). The topics covered      include linked-lists, trees, stacks, queues, classes,
 recursion, and a variety of data representation methods. Further topics in software      engineering and programming
 style as well as algorithms for sorting and searching are included.")
 
-Prerequisite.create!(this_course_id: cs2.id, target_course_id: cs1.id) 
-
 organization2 = Course.create!(name: 'Computer Organization 2', subject: 'CS', call_number: 2400, credit_hours:4, description: "The
 course presents the functional organization of computers, multicore and multithreaded processors, high-performance
 storage, multiprocessor and multicomputer parallel architectures, and error detecting/correcting codes. Students learn
 assembly language programming and create software using a contemporary development environment.")
-
-Prerequisite.create!(this_course_id: organization2.id, target_course_id: cs2.id) 
-Prerequisite.create!(this_course_id: organization2.id, target_course_id: organization.id) 
 
 theory = Course.create!(name: 'Introduction to the Theory of Computation', subject: 'CS', call_number: 3240, credit_hours:4,
 description: "This course explores language theory and computability. Language theory includes: regular expressions,
 regular languages, and finite automata (deterministic and nondeterministic); context-free languages and pushdown
 automata; and language grammars. Computability includes: Tuning machines and their computing power; unsolvable problems;
 and intractable problems (NP-Completeness).")
-
-Prerequisite.create!(this_course_id: theory.id, target_course_id: cs2.id) 
-Prerequisite.create!(this_course_id: theory.id, target_course_id: organization2.id) 
 
 ppl = Course.create!(name: 'Principles of Programming Languages', subject: 'CS', call_number: 3210, credit_hours:4,
 description: "This course traces the evolution of programming languages and identifies and analyzes the contributions
@@ -67,8 +57,6 @@ as creation of activation records for block structured languages and static and 
 program object visibility are studied in depth. All four of the modern programming language paradigms (procedural,
 functional, object-oriented, and logical) will be studied.")
 
-Prerequisite.create!(this_course_id: ppl.id, target_course_id: theory.id) 
-Prerequisite.create!(this_course_id: ppl.id, target_course_id: organization2.id) 
 
 os = Course.create!(name: 'Operating Systems', subject: 'CS', call_number: 3600, credit_hours:4, description: "This course
 provides an introduction to modern computer operating systems, their use, design, development, and implementation.
@@ -77,16 +65,9 @@ concurrency, inter-process communication, memory management, file system organiz
 environments), and system security. This course will require students to write programs that implement some operating
 system functions.")
 
-Prerequisite.create!(this_course_id: os.id, target_course_id: cs2.id) 
-Prerequisite.create!(this_course_id: os.id, target_course_id: organization2.id) 
-
 algorithms = Course.create!(name: 'Algorithms and Algorithm Analysis', subject: 'CS', call_number: 4050, credit_hours:4, description:
 "The emphasis of this course is on the design, analysis, and evaluation of efficient algorithms for a wide variety of
 computing problems.")
-
-Prerequisite.create!(this_course_id: algorithms.id, target_course_id: cs2.id) 
-Prerequisite.create!(this_course_id: algorithms.id, target_course_id: os.id) 
-Prerequisite.create!(this_course_id: algorithms.id, target_course_id: organization2.id) 
 
 principles = Course.create!(name: 'Software Engineering Principles', subject: 'CS', call_number: 4250, credit_hours:4, description:
 "This course focuses on the software development life cycle. Special emphasis is placed on the earlier phases in the
@@ -95,13 +76,20 @@ evaluated after it is written. Finally, the post-implementation phases that repr
 cycle during which the software is evolving as it is in use are studied in depth. Students will perform various role-
 playing activities in which they represent users and implementors during these phases of the development process.")
 
-Prerequisite.create!(this_course_id: principles.id, target_course_id: os.id) 
-Prerequisite.create!(this_course_id: principles.id, target_course_id: algorithms.id) 
-Prerequisite.create!(this_course_id: principles.id, target_course_id: ppl.id) 
-
 practices = Course.create!(name: 'Software Engineering Practices', subject: 'CS', call_number: 4260, credit_hours:4, description:
 "TThis course is a continuation of CS 4250, Software Engineering Principles. Students will work in teams of four to six
 and apply the principles to the development of a real-world project. Projects will be solicited from industry and
 progress will be evaluated in conjunction with industry representatives.")
 
-Prerequisite.create!(this_course_id: practices.id, target_course_id: principles.id) 
+Prerequisite.create!(this_course_id:3, target_course_id:1)
+Prerequisite.create!(this_course_id:4, target_course_id:2)
+Prerequisite.create!(this_course_id:5, target_course_id:3)
+Prerequisite.create!(this_course_id:5, target_course_id:4)
+Prerequisite.create!(this_course_id:6, target_course_id:3)
+Prerequisite.create!(this_course_id:7, target_course_id:3)
+Prerequisite.create!(this_course_id:7, target_course_id:4)
+Prerequisite.create!(this_course_id:8, target_course_id:6)
+Prerequisite.create!(this_course_id:9, target_course_id:5)
+Prerequisite.create!(this_course_id:9, target_course_id:6)
+Prerequisite.create!(this_course_id:10, target_course_id:9)
+
