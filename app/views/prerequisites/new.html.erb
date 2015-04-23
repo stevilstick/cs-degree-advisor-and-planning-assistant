@@ -6,7 +6,7 @@
 
         <div class="form-group">
           <%= f.collection_select( :course, Course.all, :id, :name )%>
-          <%= f.hidden_field :course_id, value: course.id %>
+          <%= f.hidden_field :this_course_id, value: this_course.id %>
         </div>
         <div class="actions">
           <%= f.submit "Add Prerequisite", class: "btn btn-info form-group" %>
