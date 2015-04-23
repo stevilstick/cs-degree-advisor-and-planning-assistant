@@ -1,0 +1,8 @@
+<%= form_for Year.new do |f| %>
+    <p>Add New Year:</p>
+    <div class="form-group">
+      <%= f.number_field :year, value: Time.zone.now.year, class: 'form-control' %>
+      <%= f.hidden_field :course_plan_id, value: course_plan.id %>
+    </div>
+    <%= f.submit "Add Year", class: "btn btn-info form-control" %>
+<% end %>

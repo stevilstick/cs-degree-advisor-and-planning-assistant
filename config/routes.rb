@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'courses/show'
   get 'courses' => 'courses#index'
   get 'signup' => 'users#new'
-  resources :users, :course_plans, :semesters, :years, :courses, :course_instances
+  resources :users, :course_plans, :semesters, :years, :courses, :course_instances, :prerequisites
   post 'semesters/:id/add_courses' => 'semesters#add_courses', as: :add_courses_to_semester
   resources :courses do
     collection do

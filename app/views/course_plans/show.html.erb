@@ -82,6 +82,11 @@
                                       <% end%>
                                     </span>
                                       <strong class="col-xs-2 text-right">
+                                        <%= link_to course_path(instance.course.id),
+                                                    class: 'text-default',
+                                                    title: 'View this course.' do %>
+                                            <i class="fa fa-eye"></i>
+                                        <% end %>
                                         <%= link_to instance,
                                                     method: :delete,
                                                     class: 'text-danger',

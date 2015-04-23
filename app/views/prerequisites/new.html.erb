@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Add a Prerequisite to Course</h1>
+    <%= form_for(@prerequisite) do |f| %>
+      <%= render 'shared/error_messages', object: @prerequisite %>
+
+        <div class="form-group">
+          <%= f.collection_select( :course, Course.all, :id, :name )%>
+          <%= f.hidden_field :course_id, value: course.id %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Add Prerequisite", class: "btn btn-info form-group" %>
+        </div>
+    <% end %>
+  </div>
+</div>
