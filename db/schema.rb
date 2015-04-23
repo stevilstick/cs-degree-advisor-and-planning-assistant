@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417154854) do
+ActiveRecord::Schema.define(version: 20150421162635) do
 
   create_table "advisor_students", force: :cascade do |t|
     t.integer  "student_id"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20150417154854) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "required_credit_hours", precision: 10, scale: 2
-    t.integer  "type"
+    t.integer  "prerequisite_type",                              default: 1
     t.string   "subject"
   end
 
@@ -102,15 +102,12 @@ ActiveRecord::Schema.define(version: 20150417154854) do
   end
 
   create_table "semester_definitions", force: :cascade do |t|
-    t.integer  "semesters_id"
     t.string   "name"
     t.integer  "in_year_position"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.decimal  "max_credit_hours", precision: 10, scale: 2
   end
-
-  add_index "semester_definitions", ["semesters_id"], name: "index_semester_definitions_on_semesters_id"
 
   create_table "semesters", force: :cascade do |t|
     t.integer  "year_id"

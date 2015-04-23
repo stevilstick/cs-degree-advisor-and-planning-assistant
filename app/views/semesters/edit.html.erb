@@ -6,7 +6,7 @@
         <%= render 'shared/error_messages', object: @semester %>
 
         <%= f.label :semester %>
-        <%= f.collection_select( :semester_definition_id, SemesterDefinition.all, :id, :name )%>
+        <%= f.collection_select( :semester_definitions_id, SemesterDefinition.all, :id, :name )%>
 
         <%= f.submit 'Update Semester', class: 'btn btn-primary' %>
     <% end %>

@@ -70,6 +70,11 @@
                               <div class="container-fluid">
                                 <span class="col-xs-10">
                                   <%= instance.course.name %>
+                                  <% if instance.prerequisites == 1 %>
+                                       <h5>complete prereqs</h5>
+                                  <% else %>
+                                       <h5>incomplete prereqs</h5>
+                                  <% end%>
                                 </span>
                                 <strong class="col-xs-2 text-right">
                                   <%= link_to 'x',

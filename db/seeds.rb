@@ -75,8 +75,20 @@ evaluated after it is written. Finally, the post-implementation phases that repr
 cycle during which the software is evolving as it is in use are studied in depth. Students will perform various role-
 playing activities in which they represent users and implementors during these phases of the development process.")
 
-Course.create!(name: 'Software Engineering Practices', subject: 'CS', call_number: 4250, credit_hours:4, description:
-"TThis course is a continuation of CS 4250, Software Engineering Principles. Students will work in teams of four to six
+Course.create!(name: 'Software Engineering Practices', subject: 'CS', call_number: 4260, credit_hours:4, description:
+"This course is a continuation of CS 4250, Software Engineering Principles. Students will work in teams of four to six
 and apply the principles to the development of a real-world project. Projects will be solicited from industry and
 progress will be evaluated in conjunction with industry representatives.")
+
+Prerequisite.create!(this_course_id:3, target_course_id:1)
+Prerequisite.create!(this_course_id:4, target_course_id:2)
+Prerequisite.create!(this_course_id:5, target_course_id:3)
+Prerequisite.create!(this_course_id:5, target_course_id:4)
+Prerequisite.create!(this_course_id:6, target_course_id:3)
+Prerequisite.create!(this_course_id:7, target_course_id:3)
+Prerequisite.create!(this_course_id:7, target_course_id:4)
+Prerequisite.create!(this_course_id:8, target_course_id:6)
+Prerequisite.create!(this_course_id:9, target_course_id:5)
+Prerequisite.create!(this_course_id:9, target_course_id:6)
+Prerequisite.create!(this_course_id:10, target_course_id:9)
 
