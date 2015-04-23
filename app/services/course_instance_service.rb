@@ -3,13 +3,15 @@ class CourseInstanceService
   # Find course instances for a given context
   # Context must be in the format: {semester_id: 1}
   def self.find(context)
-      return CourseInstance.where(:semester_id => context[:semester_id])
+      semester = Semester.find(context[:semester_id])
+      return semester.course_instances
   end
 
   # Find course instances for a given context
   # Context must be in the format: {year_id: 1}
   def self.find_by_year(context)
-    semesters_in_year = Semester.where(:year_id => context[:year_id])
+    year = Year.find(context[:year_id])
+    semesters_in_year = year.semesters
     course_instances = Array.new
     semesters_in_year.each do |s|
       course_instances_in_s = find({semester_id: s.id})
@@ -25,10 +27,10 @@ class CourseInstanceService
   # Context must be in the format: {year_id: 1}
   def self.find_before_year(context)
     course_instances = Array.new
-    year = Year.where(:id  => context[:year_id])
-    years = year[0].course_plan.years
+    year = Year.find(context[:year_id])
+    years = year.course_plan.years
     years.each do |y|
-      if y.year < year[0].year
+      if y.year < year.year
         course_instances_in_s = find_by_year({year_id: y.id})
         if !course_instances_in_s.empty?
           course_instances.concat(course_instances_in_s)
@@ -57,7 +59,8 @@ class CourseInstanceService
   # Parameter is a context with the semester_id
   # Context must be in the format: {semester_id: 1}
   def self.find_all_before_semester(context)
-    year = Semester.where(:id => context[:semester_id])[0].year
+    semester = Semester.find(context[:semester_id])
+    year = semester.year
     course_instances = Array.new
     course_instances.concat(find_before_year({year_id: year.id}))
     course_instances.concat(find_before_semester(context))
@@ -67,7 +70,8 @@ class CourseInstanceService
   # Gets all the course instances
   # Context must be in the format: {course_id: 1}
   def self.find_all_in_plan(context)
-    years = CoursePlan.where(:id => context[:course_plan_id])[0].years
+    course_plan = CoursePlan.find(context[:course_plan_id])
+    years = course_plan.years
     course_instances = Array.new
     years.each do |y|
       course_instances.concat(find_by_year({year_id: y.id}))

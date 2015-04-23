@@ -6,7 +6,7 @@ class SemestersControllerTest < ActionController::TestCase
     @course_plan = FactoryGirl.create :course_plan, student_id: @student.id, plan_name: "Plan 1"
     @year = FactoryGirl.create :year, course_plan_id: @course_plan.id
     @winterim = FactoryGirl.create :semester_definition, name: "Winterim"
-    @semester = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: @winterim.id
+    @semester = FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: @winterim.id
   end
 
   test "should create semester" do
@@ -38,8 +38,8 @@ class SemestersControllerTest < ActionController::TestCase
   end
 
   test "should update semester name" do
-    put :update, id: @semester.id, semester: {semester_definitions_id: 4}
-    assert_equal 4, assigns(:semester).semester_definitions_id
+    put :update, id: @semester.id, semester: {semester_definition_id: 4}
+    assert_equal 4, assigns(:semester).semester_definition_id
   end
 
 end

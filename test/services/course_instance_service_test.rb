@@ -5,7 +5,7 @@ class CourseInstancesServicesTest < ActionController::TestCase
     @student = FactoryGirl.create :user
     @course_plan = FactoryGirl.create :course_plan, student_id: @student.id, plan_name: "Plan 1"
     @year = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2015
-    @semester = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 5 #id:5 is Fall check fixtures
+    @semester = FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: 5 #id:5 is Fall check fixtures
     @course_instance = FactoryGirl.create :course_instance, semester_id: @semester.id, id:1, course_id: 2 #CS2050
   end
 
@@ -32,8 +32,8 @@ class CourseInstancesServicesTest < ActionController::TestCase
 
   # There will be a total of three course instances, 2 of are in previous semesters
   test "should find course instances with in semesters previous to semester_id = 5(Fall def), and year_id=1" do
-    semester = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 2 #spring
-    semester2 =  FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 4 #summer
+    semester = FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: 2 #spring
+    semester2 =  FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: 4 #summer
     course1 = FactoryGirl.create :course_instance, semester_id: semester.id
     course2 = FactoryGirl.create :course_instance, semester_id: semester2.id
     context = {semester_id:@semester.id} #@semester has fall as definition
@@ -47,13 +47,13 @@ class CourseInstancesServicesTest < ActionController::TestCase
   test "should find course instances with in course plan for previous years, year = 2015.(Testing:find_before_year)" do
     year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
     year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2013
-    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
-    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definitions_id: 4 #summer
+    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definition_id: 2 #spring
+    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definition_id: 4 #summer
     course1 = FactoryGirl.create :course_instance, semester_id: semester.id
     course2 = FactoryGirl.create :course_instance, semester_id: semester2.id
     # to make sure it doesn't get future years
     year3 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2016
-    semester3 = FactoryGirl.create :semester, year_id: year3.id, semester_definitions_id: 4 #summer
+    semester3 = FactoryGirl.create :semester, year_id: year3.id, semester_definition_id: 4 #summer
     FactoryGirl.create :course_instance, semester_id: semester3.id
     context = {year_id:@year.id} #@semester has fall as definition
     result = CourseInstanceService.find_before_year(context)
@@ -67,17 +67,17 @@ class CourseInstancesServicesTest < ActionController::TestCase
   test "should find course instances with in year(2015) for semester previous to Fall.(Testing:find_before_semester)" do
     # To make sure it doesn't check previous years
     year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
-    spring = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
+    spring = FactoryGirl.create :semester, year_id: year1.id, semester_definition_id: 2 #spring
     FactoryGirl.create :course_instance, semester_id: spring.id
 
     # what it should find
-    semester1 = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 2 #spring
-    semester2 =  FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 4 #summer
+    semester1 = FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: 2 #spring
+    semester2 =  FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: 4 #summer
     course1 = FactoryGirl.create :course_instance, semester_id: semester1.id
     course2 = FactoryGirl.create :course_instance, semester_id: semester2.id
     # to make sure it doesn't get future years
     year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2016
-    semester3 = FactoryGirl.create :semester, year_id: year2.id, semester_definitions_id: 4 #summer
+    semester3 = FactoryGirl.create :semester, year_id: year2.id, semester_definition_id: 4 #summer
     FactoryGirl.create :course_instance, semester_id: semester3.id
     context = {semester_id:@semester.id} #@semester has fall as definition
     result = CourseInstanceService.find_before_semester(context)
@@ -90,17 +90,17 @@ class CourseInstancesServicesTest < ActionController::TestCase
   test "should find all course instances previous to Fall 2015(Testing:find_all_before_semester)" do
     # what it should find
     year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
-    semester1 = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
+    semester1 = FactoryGirl.create :semester, year_id: year1.id, semester_definition_id: 2 #spring
     course1 = FactoryGirl.create :course_instance, semester_id: semester1.id
 
-    semester2 = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 2 #spring
-    semester3 =  FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 4 #summer
+    semester2 = FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: 2 #spring
+    semester3 =  FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: 4 #summer
     course2 = FactoryGirl.create :course_instance, semester_id: semester2.id
     course3 = FactoryGirl.create :course_instance, semester_id: semester3.id
 
     # to make sure it doesn't get future years
     year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2016
-    semester4 = FactoryGirl.create :semester, year_id: year2.id, semester_definitions_id: 4 #summer
+    semester4 = FactoryGirl.create :semester, year_id: year2.id, semester_definition_id: 4 #summer
     FactoryGirl.create :course_instance, semester_id: semester4.id
     context = {semester_id:@semester.id} #@semester has fall as definition and year 2015
     result = CourseInstanceService.find_all_before_semester(context)
@@ -114,15 +114,15 @@ class CourseInstancesServicesTest < ActionController::TestCase
   test "Must only get course instances in specified plan(testing:find_all_in_plan)" do
     year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
     year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2013
-    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
-    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definitions_id: 4 #summer
+    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definition_id: 2 #spring
+    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definition_id: 4 #summer
     FactoryGirl.create :course_instance, semester_id: semester.id, course_id: 1 #CS1015
     FactoryGirl.create :course_instance, semester_id: semester2.id, course_id: 3 #CS2400
 
     # to make sure it doesn't get course instances from other plans
     other_plan = FactoryGirl.create :course_plan, student_id: @student.id, plan_name: "Plan 1"
     year3 = FactoryGirl.create :year, course_plan_id: other_plan.id, year:2014
-    semester3 = FactoryGirl.create :semester, year_id: year3.id, semester_definitions_id: 4 #summer
+    semester3 = FactoryGirl.create :semester, year_id: year3.id, semester_definition_id: 4 #summer
     FactoryGirl.create :course_instance, semester_id: semester3.id, course_id: 4 # CS3210
 
     context = {course_plan_id: @course_plan.id} #@semester has fall as definition
@@ -134,8 +134,8 @@ class CourseInstancesServicesTest < ActionController::TestCase
   test "Must update the state of its prerequisites in every course instance in a plan(testing:find_all_in_plan)" do
     year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
     year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2013
-    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
-    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definitions_id: 4 #summer
+    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definition_id: 2 #spring
+    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definition_id: 4 #summer
     course1 = FactoryGirl.create :course_instance, semester_id: semester.id, course_id: 1 #CS1050
     course2 = FactoryGirl.create :course_instance, semester_id: semester2.id, course_id: 4 #CS3210
 

@@ -39,13 +39,13 @@ class PrerequisiteServiceTest < ActionController::TestCase
   test "CS2 must be taken for PPL, Should get CS(testing:needToBeCompleted)" do
     year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
     year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2013
-    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
-    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definitions_id: 4 #summer
+    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definition_id: 2 #spring
+    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definition_id: 4 #summer
     course1 = FactoryGirl.create :course_instance, semester_id: semester.id, course_id: 1 #CS1015
     FactoryGirl.create :course_instance, semester_id: semester2.id, course_id: 3 #CS2400
     # to make sure it doesn't get future years
     year3 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2016
-    semester3 = FactoryGirl.create :semester, year_id: year3.id, semester_definitions_id: 4 #summer
+    semester3 = FactoryGirl.create :semester, year_id: year3.id, semester_definition_id: 4 #summer
     course3 = FactoryGirl.create :course_instance, semester_id: semester3.id, course_id: 4 # CS3210
 
     context = {course_instance_id: course3.id} #@semester has fall as definition
@@ -58,13 +58,13 @@ class PrerequisiteServiceTest < ActionController::TestCase
   test "CS2 must be taken for PPL, Should get false(testing:hasCompletedPrerequisites)" do
     year1 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014
     year2 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2013
-    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definitions_id: 2 #spring
-    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definitions_id: 4 #summer
+    semester = FactoryGirl.create :semester, year_id: year1.id, semester_definition_id: 2 #spring
+    semester2 =  FactoryGirl.create :semester, year_id: year2.id, semester_definition_id: 4 #summer
     course1 = FactoryGirl.create :course_instance, semester_id: semester.id, course_id: 1 #CS1015
     FactoryGirl.create :course_instance, semester_id: semester2.id, course_id: 3 #CS2400
     # to make sure it doesn't get future years
     year3 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2016
-    semester3 = FactoryGirl.create :semester, year_id: year3.id, semester_definitions_id: 4 #summer
+    semester3 = FactoryGirl.create :semester, year_id: year3.id, semester_definition_id: 4 #summer
     course3 = FactoryGirl.create :course_instance, semester_id: semester3.id, course_id: 4 # CS3210
 
     context = {course_instance_id: course3.id} #@semester has fall as definition
