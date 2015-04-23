@@ -2,20 +2,45 @@
   <h1>Course Catalog</h1>
   <hr>
   <%= render 'courses/form' %>
-  <% @courses.each do |course| %>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h2><%= course.name %></h2>
-          <%= render 'course_instances/form', semester: @semester, course: course %>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <h3><%= course.subject %>-<%= course.call_number %></h3>
-          </div>
-          <div class="row">
-            <h3>Credit hours: <%= course.credit_hours %></h3>
-          </div>
-        </div>
-      </div>
+  <%= form_tag add_courses_to_semester_path(@semester), method: :post do %>
+  <table class="table table-responsive">
+    <thead>
+        <tr>
+          <th>Course Name</th>
+          <th>Subject</th>
+          <th>Number</th>
+          <th>Credit Hours</th>
+          <th>
+            <button class="btn btn-sm btn-info">
+              Add Selected
+            </button>
+          </th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @courses.each do |course| %>
+        <tr>
+          <td><%= course.name %></td>
+          <td><%= course.subject %></td>
+          <td><%= course.call_number %></td>
+          <td><%= course.credit_hours %></td>
+          <td><%= check_box_tag 'course_ids[]', course.id %></td>
+ 	  <% prerequisites = PrerequisiteService.getPrerequisites( { course_id: course.id } ) %>
+          <td><b>Prerequisites: </b>
+          <% if prerequisites.any? %> 
+              <% prerequisites.each do |prerequisite| %>
+                 <%= prerequisite.name %>
+                 <% unless prerequisite.equal? prerequisites.last %>
+                     ,
+                 <% end%>
+              <% end %>
+          <% else %>
+              none
+          <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
   <% end %>
 </div>

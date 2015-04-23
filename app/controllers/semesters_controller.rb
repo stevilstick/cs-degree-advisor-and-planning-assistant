@@ -1,5 +1,5 @@
 class SemestersController < ApplicationController
-  before_action :set_semester, only: [:show, :edit, :update, :destroy]
+  before_action :set_semester, only: [:show, :edit, :update, :destroy, :add_courses]
 
   # GET /semesters
   # GET /semesters.json
@@ -19,6 +19,18 @@ class SemestersController < ApplicationController
 
   # GET /semesters/1/edit
   def edit
+  end
+
+  # POST /semesters/1/add_courses
+  def add_courses
+    params[:course_ids] ||= []
+    params.permit(:id, course_ids: [])
+    courses_to_add = params[:course_ids]
+    instances = []
+    courses_to_add.each do |id|
+      CourseInstance.new(course_id:id, semester_id:@semester.id).save
+    end
+    redirect_to course_plan_path(@semester.year.course_plan)
   end
 
   # POST /semesters
