@@ -20,8 +20,8 @@ class AddCourseToPlanFromSearchTest < ActionDispatch::IntegrationTest
     
     # Add a new course to course plan
     first(:css, '.add-course-link').click
-    fill_in 'search', with: 'Computer Science 1'
-    click_button 'Search'
+    # fill_in 'search', with: 'Computer Science 1'
+    # click_button 'Search'
     # First fixture course is Computer Science 1, this will be selected
     # first per the Capybara first matcher
     first(:css, "input[type='checkbox']").set(true)
