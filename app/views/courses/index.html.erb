@@ -25,6 +25,19 @@
           <td><%= course.call_number %></td>
           <td><%= course.credit_hours %></td>
           <td><%= check_box_tag 'course_ids[]', course.id %></td>
+ 	  <% prerequisites = PrerequisiteService.getPrerequisites( { course_id: course.id } ) %>
+          <td><b>Prerequisites: </b>
+          <% if prerequisites.any? %> 
+              <% prerequisites.each do |prerequisite| %>
+                 <%= prerequisite.name %>
+                 <% unless prerequisite.equal? prerequisites.last %>
+                     ,
+                 <% end%>
+              <% end %>
+          <% else %>
+              none
+          <% end %>
+          </td>
         </tr>
     <% end %>
     </tbody>
