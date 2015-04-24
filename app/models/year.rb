@@ -10,7 +10,7 @@ class Year < ActiveRecord::Base
     defaults = Rails.configuration.years[:default_semesters]
     semesters = []
     defaults.each do |sem|
-      semesters << {semester_definitions_id:sem}
+      semesters << {semester_definition_id:sem}
     end
     self.semesters.create(semesters)
   end
