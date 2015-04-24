@@ -37,7 +37,7 @@ class YearTest < ActiveSupport::TestCase
     assert @year.semesters.length === 3
     semesters = Rails.configuration.years[:default_semesters]
     @year.semesters.each_with_index do |semester, i|
-      assert semester.semester_definitions_id === semesters[i], "actual: " + semester.semester_definitions_id.to_s + " expected: " + semesters[i].to_s + " for i:" + i.to_s
+      assert semester.semester_definition_id === semesters[i], "actual: " + semester.semester_definition_id.to_s + " expected: " + semesters[i].to_s + " for i:" + i.to_s
     end
   end
 

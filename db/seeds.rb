@@ -19,7 +19,7 @@ SemesterDefinition.create!(id:3, name:"Maymester", in_year_position: 3, max_cred
 SemesterDefinition.create!(id:4, name:"Summer", in_year_position: 4, max_credit_hours: 12)
 SemesterDefinition.create!(id:5, name:"Fall", in_year_position: 5, max_credit_hours: 18)
 
-Semester.create!(semester_definitions_id: 1, year_id: 1)
+Semester.create!(semester_definition_id: 1, year_id: 1)
 
 # Courses required for CS 
 cs1 = Course.create!(name: 'Computer Science 1', subject: 'CS', call_number: 1050, credit_hours:4,

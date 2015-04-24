@@ -10,7 +10,7 @@ class PrerequisiteService
       # this only should only contain those prereqs of type 1
       # to know what the types mean read data model description
       if r.prerequisite_type == 1 #default value for type is 1
-        req_ids.insert(-1, r.target_course_id) #adding id of required course to the end of array
+        req_ids << r.target_course_id
       end
     end
     return Course.find(req_ids)
@@ -20,6 +20,7 @@ class PrerequisiteService
   # P.S this is a 'static' method, should be called PrerequisiteService.getPrerequisites context
   # Context must be in the format: {course_id: course.id}
   def self.isRequiredFor(context)
+    course = Course.find(context[:course_id])
     reqs = Prerequisite.where(:target_course_id => context[:course_id])
     req_ids = Array.new
     reqs.each do |r|
@@ -31,7 +32,7 @@ class PrerequisiteService
   # Returns an array with the Courses that need to be completed for this course instance
   # Context must be in the format: {course_instance_id: course_instance.id}
   def self.needToBeCompleted(context)
-    c_instance = CourseInstance.where(:id => context[:course_instance_id])[0]
+    c_instance = CourseInstance.find(context[:course_instance_id])
     prereqs = getPrerequisites({course_id: c_instance.course_id})
     all_past_instances = CourseInstanceService.find_all_before_semester({semester_id: c_instance.semester_id})
     incomplete = prereqs

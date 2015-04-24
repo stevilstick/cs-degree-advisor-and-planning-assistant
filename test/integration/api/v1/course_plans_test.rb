@@ -2,6 +2,10 @@ require 'test_helper'
 
 class ApiV1CoursePlansTest < ActionDispatch::IntegrationTest
 
+  def setup
+    CoursePlan.delete_all
+  end
+
   test "creates a course plan" do
     post "/api/v1/course_plans/", { student_id: 33, plan_name: "First" }, { "Accept" => "application/json" }
     assert_equal(201, response.status)

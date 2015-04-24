@@ -6,8 +6,13 @@
   <hr>
 </div>
 <div class="col-xs-12 col-md-10 col-md-offset-1">
+  <p class="text-muted">
+    <%= course_instance_notice %>
+    <%= semester_notice %>
+  </p>
+
   <% @course_plan.years.each do |year| %>
-      <div class="panel panel-info">
+      <div class="panel panel-default">
         <div class="panel-heading">
           <div class="container-fluid">
 
@@ -35,14 +40,16 @@
         </div>
         <div class="panel-body">
           <div class="row">
-            <% year.semesters.each do |semester| %>
+            <% (year.semesters.to_a.sort! do |a, b|
+              a.semester_definition.in_year_position <=> b.semester_definition.in_year_position
+            end).each do |semester| %>
                 <div class="col-xs-12 col-md-4">
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <div class="container-fluid">
                         <div class="row">
                           <div class="col-xs-6">
-                            <h4><%= SemesterDefinition.find(semester.semester_definitions_id).name %></h4>
+                            <h4><%= SemesterDefinition.find(semester.semester_definition_id).name %></h4>
                           </div>
                           <div class="col-xs-6 text-right">
                             <h4 class="semester-controls">
@@ -66,23 +73,38 @@
                     <div class="panel-body">
                       <% (semester.course_instances || []).each do |instance| %>
                           <% if instance.course %>
-                              <div class="panel panel-info">
+                              <div class="panel <%= if instance.prerequisites?
+                                        "panel-success"
+                                    else
+                                        "panel-danger"
+                                    end %>">
                                 <div class="panel-heading">
                                   <div class="container-fluid">
                                     <div class="row">
                                     <span class="col-xs-10">
+                                      <% unless instance.prerequisites? %>
+                                          <i class="fa fa-ban"
+                                             title="This course's prerequesites have not been met!">
+                                          </i>
+                                      <% end %>
                                       <%= link_to instance.course.name,
                                                   course_path(instance.course.id),
                                                   class: 'text-default',
                                                   title: 'View this course.' %><br>
-                                      <small class="text-muted">
-                                        <%= sprintf("%g", instance.course.credit_hours) %> credit hours
+                                      <small>
+                                        <% needs = PrerequisiteService.needToBeCompleted(course_instance_id: instance.id) %>
+                                        <% if needs.length > 0 %>
+                                            <br>
+                                            Missing prerequisites:
+                                        <% end %>
+                                        <ul>
+                                          <% needs.each do |course| %>
+                                              <li>
+                                                <%= course.name %>
+                                              </li>
+                                          <% end %>
+                                        </ul>
                                       </small>
-				      <% if instance.prerequisites == 1 %>
-                                        <h5>complete prereqs</h5>
-                                      <% else %>
-                                        <h5>incomplete prereqs</h5>
-                                      <% end%>
                                     </span>
                                       <strong class="col-xs-2 text-right">
                                         <%= link_to instance,
@@ -98,22 +120,20 @@
                               </div>
                           <% end %>
                       <% end %>
-                      <p class="text-muted"><%= course_instance_notice %></p>
                     </div>
                     <div class="panel-footer">
                       <%= link_to 'Add Course(s)',
-                                    {:controller => "courses", 
-                                        :action => "index", 
-                                        :semester_id => semester.id,
-                                        :course_plan_id => @course_plan.id },
-                                        title: 'Search for a course and add it to this semester',
-                                        class: 'btn btn-default add-course-link' %>
+                                  {:controller => "courses",
+                                   :action => "index",
+                                   :semester_id => semester.id,
+                                   :course_plan_id => @course_plan.id},
+                                  title: 'Search for a course and add it to this semester',
+                                  class: 'btn btn-default add-course-link' %>
                     </div>
                   </div>
                 </div>
             <% end %>
           </div>
-          <p class="text-muted"><%= semester_notice %></p>
         </div>
         <div class="panel-footer">
           <%= render 'semesters/form', year: year %>

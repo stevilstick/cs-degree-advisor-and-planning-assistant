@@ -1,6 +1,6 @@
 <%= form_for Semester.new, {:html => {class: 'row'}} do |f| %>
     <div class="col-xs-9 col-md-10">
-      <%= f.collection_select( :semester_definitions_id, SemesterDefinition.all, :id, :name, {}, class:'form-control' )%>
+      <%= f.collection_select( :semester_definition_id, SemesterDefinition.all, :id, :name, {}, class:'form-control' )%>
     </div>
     <%= f.hidden_field :year_id, value: year.id %>
     <div class="col-xs-3 col-md-2 text-right">

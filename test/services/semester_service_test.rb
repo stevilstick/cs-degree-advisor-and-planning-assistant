@@ -11,14 +11,14 @@ class SemesterServicesTest < ActionController::TestCase
   test "should find semesters previous to semester_id = 5(Fall def), in year" do
 
     year2014 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2014, id: 4
-    FactoryGirl.create :semester, year_id: year2014.id, semester_definitions_id: 1 #fall
+    FactoryGirl.create :semester, year_id: year2014.id, semester_definition_id: 1 #fall
 
-    winter2015 = FactoryGirl.create :semester, year_id: @year.id,semester_definitions_id: 1 #winter
-    summer2015 = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 4 #summer
-    fall2015 = FactoryGirl.create :semester, year_id: @year.id, semester_definitions_id: 5 #fall
+    winter2015 = FactoryGirl.create :semester, year_id: @year.id,semester_definition_id: 1 #winter
+    summer2015 = FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: 4 #summer
+    fall2015 = FactoryGirl.create :semester, year_id: @year.id, semester_definition_id: 5 #fall
 
     year2016 = FactoryGirl.create :year, course_plan_id: @course_plan.id, year:2016, id:5
-    FactoryGirl.create :semester, year_id: year2016.id, semester_definitions_id: 1 #fall
+    FactoryGirl.create :semester, year_id: year2016.id, semester_definition_id: 1 #fall
 
     context = {semester_id:fall2015.id} #@semester has fall as definition
     result = SemesterService.find_past_semesters(context)
