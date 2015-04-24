@@ -8,15 +8,20 @@ class PrerequisitesControllerTest < ActionController::TestCase
   end
 
   test "should create prerequisite" do
-    assert_difference('@course1.prerequisite.count') do
-      post :create, prerequisite: {this_course_id: @course1.id}, target_course_id: @course2.id
+    assert_difference('Prerequisite.count', 1) do
+      post :create, prerequisite: {this_course_id: @course1.id, target_course_id: @course2.id}
     end
     assert_response :redirect
   end
 
   test "should destroy prerequisite" do
     assert_difference('Prerequisite.count', -1) do
-      delete :destroy, id: @prerequisite.id
+      delete :destroy, {id: @prerequisite.id, this_course_id: @course1.id, target_course_id: @course2.id}
     end
+  end
+
+  test "should create new, unsaved prerequisite" do
+    prereq = Prerequisite.new
+    assert !prereq.valid?
   end
 end

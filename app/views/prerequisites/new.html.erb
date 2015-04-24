@@ -5,8 +5,8 @@
       <%= render 'shared/error_messages', object: @prerequisite %>
 
         <div class="form-group">
-          <%= f.collection_select( :course, Course.all, :id, :name )%>
-          <%= f.hidden_field :this_course_id, value: this_course.id %>
+          <%= f.collection_select( :target_course_id, Course.all, :id, :name )%>
+          <%= f.hidden_field :this_course_id, value: @course.id %>
         </div>
         <div class="actions">
           <%= f.submit "Add Prerequisite", class: "btn btn-info form-group" %>

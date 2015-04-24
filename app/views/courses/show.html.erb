@@ -19,7 +19,7 @@
         <% if prerequisites.any? %>
             <% prerequisites.each do |prerequisite| %>
                 <%= prerequisite.name %>
-                  <%= link_to prerequisite,
+                  <%= link_to prerequisite_path({target_course_id: prerequisite.id, this_course_id: @course.id}), #{id: Prerequisite.where({target_course_id: prerequisite.id, this_course_id: @course.id})}),
                               method: :delete,
                               class: 'text-danger',
                               title: 'Remove this prerequisite from this course.' do %>
