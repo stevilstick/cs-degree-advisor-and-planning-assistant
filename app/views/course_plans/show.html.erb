@@ -87,7 +87,10 @@
                                              title="This course's prerequesites have not been met!">
                                           </i>
                                       <% end %>
-                                      <%= instance.course.name %><br>
+                                      <%= link_to instance.course.name,
+                                                  course_path(instance.course.id),
+                                                  class: 'text-default',
+                                                  title: 'View this course.' %><br>
                                       <small>
                                         <% needs = PrerequisiteService.needToBeCompleted(course_instance_id: instance.id) %>
                                         <% if needs.length > 0 %>
