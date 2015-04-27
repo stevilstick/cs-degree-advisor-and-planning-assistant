@@ -18,6 +18,8 @@ They navigate you to [rubyinstaller.org](http://rubyinstaller.org/) but the foll
 
 ###### on Mac and Ubuntu
 See [GoRails.com's walkthrough](https://gorails.com/setup/osx/10.10-yosemite) for how to install on Mac OS X 10.10 & 10.9, or Ubuntu.
+While following these instructions, choose the guide to install ruby 2.1.2. Follow the guide to install ruby, bundler, and configure git,
+then return to this README.
 The Mac instructions use [Homebrew](http://brew.sh/) paired with [rbenv](https://github.com/sstephenson/rbenv).
 The Ubuntu instructions use apt-get and your choice of [rbenv](https://github.com/sstephenson/rbenv) or [rvm](https://rvm.io/)
 
@@ -25,23 +27,21 @@ The Ubuntu instructions use apt-get and your choice of [rbenv](https://github.co
 ###### Other OSs
 For operating systems not listed, we haven't researched nor do we know the capabilities for getting Ruby on Rails installed.
 
-#### Rails
-Once you have Ruby installed, you need to install Rails using the following command:
+#### Rails 
+Once you have Ruby installed, you need to install Rails.
+If you did not install rails while installing ruby above, install it now. 
 `gem install rails`
 
 #### Bundle
+If you didn't install bundler while installing ruby above, install it now.
 Before you run any bundle commands you need to install [Bundler](http://bundler.io/) by running
 `gem install bundle`
 
 
 ### Clone the repository
 
-`git config http.sslVerify false`
-And add `--global` if you're accessing numerous repositories on Gouda.
-
-#### If you just want to run the project
 From the desired directory on your computer, run this command to clone the project:
-`git -c http.sslVerify=false clone https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
+`git -c http.sslVerify=false clone https://github.com/ankenmanp/cs-degree-advisor-and-planning-assistant.git`
 `cd cs-degree-advisor-and-planning-assistant`
 
 
