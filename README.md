@@ -9,32 +9,57 @@ Please note the following:
 * Bundler 1.8.3 is the only version tested with this product and known to be compatible.
 
 ## How To Run Locally
-### Install Ruby, Rails & Bundler
-#### Ruby
-###### on Windows
-See [RubyOnRails.org's download page](http://rubyonrails.org/download/) for details on installing Ruby on Windows.
-They navigate you to [rubyinstaller.org](http://rubyinstaller.org/) but the followup details at RubyOnRails.org are important, too.
 
+###Windows
 
-###### on Mac and Ubuntu
+This guide assumes you have git properly installed on your Windows machine. If you
+do not, please [download it and install it before moving on](http://git-scm.com/download/win).
+
+1. **Install Ruby**.
+  1. Download RubyInstaller version 2.1.6 (x64) from [rubyinstaller.org](http://rubyinstaller.org/).
+  2. Run the installer, making sure to **check the three checkboxes that show up** and **install to the default location**.
+2. **Install the [DevKit](http://rubyinstaller.org/add-ons/devkit/)**.
+  1. Download the DevKit from [here](http://rubyinstaller.org/downloads/).
+  2. Run the DevKit executable and extract the files to C:\RubyDevkit.
+  3. **Set up the DevKit**. Open a command prompt window and enter these commands:
+    1. `cd C:\RubyDevkit`
+    2. `ruby dk.rb init`
+    3. `ruby dk.rb install`
+5. **Install Rails**. In a fresh command prompt window, enter `gem install rails --no-rdoc --no-ri`. You might be prompted to allow the Ruby interpreter access to the network. Allow it.
+6. **Set up the project**. In the same command prompt window:
+  1. Navigate to the folder you want to clone the project in: `cd C:\path\of\your\choosing`
+  2. Clone the project: `git clone -c http.sslVerify=false https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
+  3. Enter the project folder: `cd cs-degree-advisor-and-planning-assistant`
+  4. Set up and run the project:
+    1. `bundle install`
+    2. `rake db:migrate`
+    3. `rake db:seed`
+    4. `rails s`
+7. **View the project in the browser**. Open your browser and navigate to `localhost:3000` to see the project running in development mode.
+
+### Mac and Ubuntu
 See [GoRails.com's walkthrough](https://gorails.com/setup/osx/10.10-yosemite) for how to install on Mac OS X 10.10 & 10.9, or Ubuntu.
 The Mac instructions use [Homebrew](http://brew.sh/) paired with [rbenv](https://github.com/sstephenson/rbenv).
 The Ubuntu instructions use apt-get and your choice of [rbenv](https://github.com/sstephenson/rbenv) or [rvm](https://rvm.io/)
 
 
-###### Other OSs
-For operating systems not listed, we haven't researched nor do we know the capabilities for getting Ruby on Rails installed.
+### Other OSs
+We do not officially support any other operating systems. You will have to figure out how to setup the project yourself.
+
+## Installing Ruby and Rails
+
+### Ruby
+See the [official Ruby site](https://www.ruby-lang.org/en/documentation/installation/) for installation guides.
 
 #### Rails
-Once you have Ruby installed, you need to install Rails using the following command:
+Once you have Ruby installed, you need to install Rails using the following command (either in terminal or command prompt, depending on your OS):
 `gem install rails`
 
-#### Bundle
-Before you run any bundle commands you need to install [Bundler](http://bundler.io/) by running
-`gem install bundle`
+Word to the wise: installing ri and rdoc takes a very long time. You can skip these if you want by running `gem install rails --no-rdoc --no-ri`.
 
+##General Information
 
-### Clone the repository
+### Cloning the repository
 
 `git config http.sslVerify false`
 And add `--global` if you're accessing numerous repositories on Gouda.
@@ -42,19 +67,19 @@ And add `--global` if you're accessing numerous repositories on Gouda.
 #### If you just want to run the project
 From the desired directory on your computer, run this command to clone the project:
 `git -c http.sslVerify=false clone https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
-`cd cs-degree-advisor-and-planning-assistant`
+then navigate inside the project folder with
+`cd cs-degree-advisor-and-planning-assistant`.
 
+Note that Gouda doesn't allow SSH connection and the SSL cert doesn't work well with Gitlab so the `-c http.sslVerify=false` is required.
 
-Note that Gouda doesn't allow SSH connection and the SSL cert doesn't work well with Gitlab so the `-c http.sslVerify=false` is important.
+You can also just download the source code from this repository.
 
-You can also just download the source code from this page.
-
-### Install Dependancies
-Make sure you are in the correct directory where the project lives.  Now install all the gem dependancies using bundle.
+### Installing dependencies
+Make sure you are in the correct directory where the project lives.  Now install all the gem dependencies using bundle.
 
 `bundle install`
 
-It may take a couple of minutes if this is your first time installing the dependancies.
+It may take a couple of minutes if this is your first time installing the dependencies.
 
 ### Run a db migration
 `bundle exec rake db:migrate`
