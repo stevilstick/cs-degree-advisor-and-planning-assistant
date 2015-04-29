@@ -227,6 +227,7 @@ DEPENDENCIES
   simplecov-json
   spring
   sqlite3
+  therubyracer
   turbolinks
   tzinfo
   tzinfo-data

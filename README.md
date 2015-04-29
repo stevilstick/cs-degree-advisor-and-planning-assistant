@@ -16,29 +16,31 @@ This guide assumes you have git properly installed on your Windows machine. If y
 do not, please [download it and install it before moving on](http://git-scm.com/download/win).
 
 1. **Install Ruby**.
-  1. Download RubyInstaller version 2.1.6 (x64) from [rubyinstaller.org](http://rubyinstaller.org/).
-  2. Run the installer, making sure to **check the three checkboxes that show up** and **install to the default location**.
+    1. Download RubyInstaller version 2.1.6 (x64) from [rubyinstaller.org](http://rubyinstaller.org/).
+    2. Run the installer, making sure to **check the three checkboxes that show up** and **install to the default location**.
 2. **Install the [DevKit](http://rubyinstaller.org/add-ons/devkit/)**.
-  1. Download the DevKit from [here](http://rubyinstaller.org/downloads/).
-  2. Run the DevKit executable and extract the files to C:\RubyDevkit.
-  3. **Set up the DevKit**. Open a command prompt window and enter these commands:
-    1. `cd C:\RubyDevkit`
-    2. `ruby dk.rb init`
-    3. `ruby dk.rb install`
+      1. Download the DevKit from [here](http://rubyinstaller.org/downloads/).
+      2. Run the DevKit executable and extract the files to C:\RubyDevkit.
+      3. **Set up the DevKit**. Open a command prompt window and enter these commands:
+        1. `cd C:\RubyDevkit`
+        2. `ruby dk.rb init`
+        3. `ruby dk.rb install`
 5. **Install Rails**. In a fresh command prompt window, enter `gem install rails --no-rdoc --no-ri`. You might be prompted to allow the Ruby interpreter access to the network. Allow it.
 6. **Set up the project**. In the same command prompt window:
-  1. Navigate to the folder you want to clone the project in: `cd C:\path\of\your\choosing`
-  2. Clone the project: `git clone -c http.sslVerify=false https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
-  3. Enter the project folder: `cd cs-degree-advisor-and-planning-assistant`
-  4. Set up and run the project:
-    1. `bundle install`
-    2. `rake db:migrate`
-    3. `rake db:seed`
-    4. `rails s`
+      1. Navigate to the folder you want to clone the project in: `cd C:\path\of\your\choosing`
+      2. Clone the project: `git clone -c http.sslVerify=false https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
+      3. Enter the project folder: `cd cs-degree-advisor-and-planning-assistant`
+      4. Set up and run the project:
+        1. `bundle install`
+        2. `rake db:migrate`
+        3. `rake db:seed`
+        4. `rails s`
 7. **View the project in the browser**. Open your browser and navigate to `localhost:3000` to see the project running in development mode.
 
 ### Mac and Ubuntu
 See [GoRails.com's walkthrough](https://gorails.com/setup/osx/10.10-yosemite) for how to install on Mac OS X 10.10 & 10.9, or Ubuntu.
+While following these instructions, choose the guide to install ruby 2.1.2. Follow the guide to install ruby, bundler, and configure git,
+then return to this README.
 The Mac instructions use [Homebrew](http://brew.sh/) paired with [rbenv](https://github.com/sstephenson/rbenv).
 The Ubuntu instructions use apt-get and your choice of [rbenv](https://github.com/sstephenson/rbenv) or [rvm](https://rvm.io/)
 
@@ -61,10 +63,6 @@ Word to the wise: installing ri and rdoc takes a very long time. You can skip th
 
 ### Cloning the repository
 
-`git config http.sslVerify false`
-And add `--global` if you're accessing numerous repositories on Gouda.
-
-#### If you just want to run the project
 From the desired directory on your computer, run this command to clone the project:
 `git -c http.sslVerify=false clone https://gouda.msudenver.edu/gitlab/falcon/cs-degree-advisor-and-planning-assistant.git`
 then navigate inside the project folder with
