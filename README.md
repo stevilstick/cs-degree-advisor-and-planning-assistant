@@ -91,7 +91,7 @@ It may take a couple of minutes if this is your first time installing the depend
 `bundle exec rails s`
 
 ### Navigate to the web application
-Open up a web browser and navigate to localhost:3000 to see the application.
+Open up a web browser and navigate to `localhost:3000` to see the application.
 You should see an example course plan if you have seeded the database with the
 command above.
 
