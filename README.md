@@ -10,16 +10,17 @@ Please note the following:
 
 ## How To Run Locally
 
-###Windows
+### Windows
 
 This guide assumes you have git properly installed on your Windows machine. If you
 do not, please [download it and install it before moving on](http://git-scm.com/download/win).
 
 1. **Install Ruby**.
-    1. Download RubyInstaller version 2.1.6 (x64) from [rubyinstaller.org](http://rubyinstaller.org/).
+    1. Download RubyInstaller version 2.1.6 from [rubyinstaller.org](http://rubyinstaller.org/).
     2. Run the installer, making sure to **check the three checkboxes that show up** and **install to the default location**.
 2. **Install the [DevKit](http://rubyinstaller.org/add-ons/devkit/)**.
       1. Download the DevKit from [here](http://rubyinstaller.org/downloads/).
+      Make sure to get the version built for Ruby 2.0 and 2.1.
       2. Run the DevKit executable and extract the files to C:\RubyDevkit.
       3. **Set up the DevKit**. Open a command prompt window and enter these commands:
         1. `cd C:\RubyDevkit`
@@ -59,7 +60,7 @@ Once you have Ruby installed, you need to install Rails using the following comm
 
 Word to the wise: installing ri and rdoc takes a very long time. You can skip these if you want by running `gem install rails --no-rdoc --no-ri`.
 
-##General Information
+## General Information
 
 ### Cloning the repository
 
