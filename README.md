@@ -1,5 +1,4 @@
 # CS Degree Advisor and Planning Assistant
-[![Build Status](http://162.243.137.213/buildStatus/icon?job=cs-degree-advisor-master)](http://162.243.137.213/job/cs-degree-advisor-master/)
 
 This Project uses Ruby version 2.1.1, Rails version 4.2.0, Bundler version 1.8.3.
 Please note the following:
